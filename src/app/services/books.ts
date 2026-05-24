@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -8,37 +9,64 @@ import { environment } from '../../environments/environment';
 export class Books {
   private http = inject(HttpClient);
 
-  // Ya NO usamos Google Books directamente
   private backendUrl = environment.apiUrl;
-
 
   constructor() {
     console.log('ENV:', environment);
   }
 
   // ============================
-  // 🔍 BUSCAR LIBROS (Google Books directo)
+  // 🔧 FIX: Forzar HTTPS en imágenes
   // ============================
-  searchBooks(query: string) {
-    return this.http.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${environment.googleBooksKey}`
-    );
+  private fixImage(url: string): string {
+    if (!url) return url;
+    return url.replace('http://', 'https://');
   }
 
   // ============================
-  // 📚 CARGAR LIBROS POR CATEGORÍA (USANDO BACKEND)
+  // 🔍 BUSCAR LIBROS (Google Books directo)
+  // ============================
+  searchBooks(query: string) {
+    return this.http
+      .get(
+        `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${environment.googleBooksKey}`
+      )
+      .pipe(
+        map((res: any) => {
+          res.items?.forEach((item: any) => {
+            const img = item.volumeInfo?.imageLinks?.thumbnail;
+            if (img) item.volumeInfo.imageLinks.thumbnail = this.fixImage(img);
+          });
+          return res;
+        })
+      );
+  }
+
+  // ============================
+  // 📚 CARGAR LIBROS POR CATEGORÍA (BACKEND)
   // ============================
   getBooksByCategory(category: string, maxResults: number = 20) {
-    return this.http.get(
-      `${this.backendUrl}/books/by-category?cat=${encodeURIComponent(category)}&max=${maxResults}`
-    );
+    return this.http
+      .get(
+        `${this.backendUrl}/books/by-category?cat=${encodeURIComponent(
+          category
+        )}&max=${maxResults}`
+      )
+      .pipe(
+        map((res: any) => {
+          res.items?.forEach((book: any) => {
+            if (book.imagen) book.imagen = this.fixImage(book.imagen);
+          });
+          return res;
+        })
+      );
   }
 
   // ============================
   // 📚 CARGAR CATÁLOGO COMPLETO DESDE VARIAS CATEGORÍAS
   // ============================
   async getCatalogByCategories(categories: string[], maxResults: number = 20) {
-    const requests = categories.map(cat =>
+    const requests = categories.map((cat) =>
       this.getBooksByCategory(cat, maxResults).toPromise()
     );
 
@@ -46,9 +74,11 @@ export class Books {
 
     const allBooks = responses.flatMap((res: any) => res.items || []);
 
-    // eliminar duplicados por ID
     const unique = new Map();
-    allBooks.forEach(book => unique.set(book.id, book));
+    allBooks.forEach((book) => {
+      if (book.imagen) book.imagen = this.fixImage(book.imagen);
+      unique.set(book.id, book);
+    });
 
     return Array.from(unique.values());
   }
@@ -57,24 +87,40 @@ export class Books {
   // 🔤 AUTOCOMPLETE (Google Books directo)
   // ============================
   autocomplete(title: string) {
-    return this.http.get(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:${title}&langRestrict=es&maxResults=10&key=${environment.googleBooksKey}`
-    );
+    return this.http
+      .get(
+        `https://www.googleapis.com/books/v1/volumes?q=intitle:${title}&langRestrict=es&maxResults=10&key=${environment.googleBooksKey}`
+      )
+      .pipe(
+        map((res: any) => {
+          res.items?.forEach((item: any) => {
+            const img = item.volumeInfo?.imageLinks?.thumbnail;
+            if (img) item.volumeInfo.imageLinks.thumbnail = this.fixImage(img);
+          });
+          return res;
+        })
+      );
   }
 
   // ============================
   // 📘 DETALLES DE UN LIBRO (Google Books directo)
   // ============================
   getBook(id: string) {
-    return this.http.get(
-      `https://www.googleapis.com/books/v1/volumes/${id}?key=${environment.googleBooksKey}`
-    );
+    return this.http
+      .get(
+        `https://www.googleapis.com/books/v1/volumes/${id}?key=${environment.googleBooksKey}`
+      )
+      .pipe(
+        map((res: any) => {
+          const img = res.volumeInfo?.imageLinks?.thumbnail;
+          if (img) res.volumeInfo.imageLinks.thumbnail = this.fixImage(img);
+          return res;
+        })
+      );
   }
 
   getBookById(id: string) {
-    return this.http.get(
-      `https://www.googleapis.com/books/v1/volumes/${id}?key=${environment.googleBooksKey}`
-    );
+    return this.getBook(id);
   }
 
   // ============================
@@ -90,6 +136,7 @@ export class Books {
     puntuacion: number;
     texto?: string | null;
   }) {
+    data.imagen = this.fixImage(data.imagen);
     return this.http.post(`${this.backendUrl}/resenas`, data);
   }
 
@@ -122,14 +169,20 @@ export class Books {
   // ============================
   // 📚 CATÁLOGO DESDE BACKEND
   // ============================
- getCatalog(page: number, categoria?: string) {
-  let url = `${this.backendUrl}/libros/catalog?page=${page}`;
+  getCatalog(page: number, categoria?: string) {
+    let url = `${this.backendUrl}/libros/catalog?page=${page}`;
 
-  if (categoria) {
-    url += `&cat=${encodeURIComponent(categoria)}`;
+    if (categoria) {
+      url += `&cat=${encodeURIComponent(categoria)}`;
+    }
+
+    return this.http.get<{ items: any[]; etiquetas: string[] }>(url).pipe(
+      map((res) => {
+        res.items?.forEach((book) => {
+          if (book.imagen) book.imagen = this.fixImage(book.imagen);
+        });
+        return res;
+      })
+    );
   }
-
-  return this.http.get<{ items: any[], etiquetas: string[] }>(url);
-}
-
 }
