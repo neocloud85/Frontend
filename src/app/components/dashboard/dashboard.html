@@ -1,0 +1,91 @@
+<div class="dashboard-container">
+
+  <h1>Catálogo de libros</h1>
+
+  <!-- BUSCADOR -->
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Buscar libro por título..."
+      [value]="searchTerm()"
+      (input)="onType($any($event.target).value)"
+    >
+    <button (click)="onSearch()">Buscar</button>
+  </div>
+
+  <!-- SUGERENCIAS -->
+  @if (suggestions().length > 0) {
+    <div class="suggestions">
+      @for (s of suggestions(); track s.id) {
+        <div class="suggestion" (click)="selectSuggestion(s.volumeInfo.title)">
+          {{ s.volumeInfo.title }}
+        </div>
+      }
+    </div>
+  }
+
+  <!-- CATEGORÍAS -->
+  <div class="categorias-container">
+    @for (cat of categoriasDisponibles; track cat) {
+      <button
+        class="categoria-btn"
+        [class.activa]="categoriaSeleccionada() === cat"
+        (click)="seleccionarCategoria(cat)"
+      >
+        {{ cat }}
+      </button>
+    }
+  </div>
+
+  <!-- TOP LIBROS -->
+  <h2>⭐ Libros mejor valorados</h2>
+
+  @if (loadingTop()) {
+    <p>Cargando mejores libros...</p>
+  }
+
+  @if (!loadingTop() && topLibros().length === 0) {
+    <p>No hay suficientes reseñas para mostrar rankings.</p>
+  }
+
+  @if (topLibros().length > 0) {
+    <div class="top-libros">
+      @for (libro of topLibros(); track libro.id) {
+        <div class="top-card" (click)="goToDetails(libro.id)">
+          <img [src]="libro.portada" alt="Portada">
+          <h3>{{ libro.titulo }}</h3>
+          <p>⭐ {{ libro.nota_media | number:'1.1-2' }}</p>
+          <p>{{ libro.total_resenas }} reseñas</p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- CATÁLOGO -->
+  <h2>Catálogo</h2>
+
+  <div class="catalog">
+    @for (book of catalogVisible(); track book.id) {
+      <div class="book-card" (click)="goToDetails(book.id)">
+        <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="Portada">
+        <h3>{{ book.volumeInfo.title }}</h3>
+        <p>{{ book.volumeInfo.authors?.join(', ') }}</p>
+      </div>
+    }
+    @empty {
+      <p class="empty">No se encontraron libros.</p>
+    }
+  </div>
+
+  <!-- PAGINACIÓN -->
+  <div class="pagination">
+    <button (click)="irAlInicio()" [disabled]="currentPage() === 0">⏮ Inicio</button>
+    <button (click)="anteriorPagina()" [disabled]="currentPage() === 0">◀ Anterior</button>
+
+    <span>Página {{ currentPage() + 1 }} de {{ totalPages() }}</span>
+
+    <button (click)="siguientePagina()" [disabled]="currentPage() + 1 >= totalPages()">Siguiente ▶</button>
+    <button (click)="irAlFinal()" [disabled]="currentPage() + 1 >= totalPages()">Final ⏭</button>
+  </div>
+
+</div>

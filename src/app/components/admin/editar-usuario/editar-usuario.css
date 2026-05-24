@@ -1,0 +1,44 @@
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button[type="submit"] {
+  background: #007bff;
+  color: white;
+}
+
+button[type="button"] {
+  background: #6c757d;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.85;
+}

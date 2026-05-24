@@ -1,0 +1,33 @@
+<h2>Gestión de reseñas</h2>
+
+@if (loading()) {
+  <p>Cargando reseñas...</p>
+} @else {
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Libro</th>
+      <th>Puntuación</th>
+      <th>Texto</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (r of resenas(); track r.id) {
+      <tr>
+        <td>{{ r.usuario }}</td>
+        <td>{{ r.libro }}</td>
+        <td>{{ r.puntuacion }}</td>
+        <td>{{ r.texto }}</td>
+        <td>
+          <button (click)="borrar(r.id)">Borrar</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+}

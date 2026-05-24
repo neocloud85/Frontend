@@ -1,0 +1,141 @@
+.dashboard-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+  margin-bottom: 15px;
+}
+
+/* BUSCADOR */
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-box button {
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* SUGERENCIAS */
+.suggestions {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.suggestion {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background: #f0f0f0;
+}
+
+/* CATEGORÍAS */
+.categorias-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.categoria-btn {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid #007bff;
+  background: white;
+  cursor: pointer;
+}
+
+.categoria-btn.activa {
+  background: #007bff;
+  color: white;
+}
+
+/* TOP LIBROS */
+.top-libros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.top-card {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+  text-align: center;
+}
+
+.top-card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+/* CATÁLOGO */
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.book-card {
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.book-card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+/* PAGINACIÓN */
+.pagination {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-weight: bold;
+  font-size: 16px;
+}

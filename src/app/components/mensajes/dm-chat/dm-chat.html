@@ -1,0 +1,20 @@
+<div class="chat-container">
+
+  <div class="mensajes">
+    @for (m of mensajes(); track m.id) {
+      <div class="mensaje" [class.mio]="m.remitente_id === user.id">
+        {{ m.contenido }}
+      </div>
+    }
+  </div>
+
+  <div class="input-area">
+    <input 
+      type="text" 
+      placeholder="Escribe un mensaje..."
+      [(ngModel)]="nuevoMensaje"
+    >
+    <button (click)="enviar()">Enviar</button>
+  </div>
+
+</div>

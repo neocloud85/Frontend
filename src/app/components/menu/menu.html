@@ -1,0 +1,40 @@
+<nav class="menu">
+
+  <!-- Enlaces públicos -->
+  @if (!isLoggedIn) {
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/register">Registro</a>
+  }
+
+  <!-- Enlaces para usuarios logueados -->
+  @if (isLoggedIn) {
+
+    <a routerLink="/dashboard">Inicio</a>
+    <a routerLink="/mis-resenas">Mis reseñas publicadas</a>
+    <a routerLink="/recomendados">Recomendaciones para ti</a>
+    <a routerLink="/resenas-usuarios">Reseñas</a>
+    <a routerLink="/buscar-usuarios">Buscar usuarios</a>
+
+    <a routerLink="/solicitudes" class="solicitudes-link">
+      Solicitudes
+      @if (solicitudesCount > 0) {
+        <span class="badge">{{ solicitudesCount }}</span>
+      }
+    </a>
+    <a routerLink="/amistades">Amistades</a>
+    <a routerLink="/dm">Mensajes</a>
+  }
+
+  <!-- Enlace solo para ADMIN -->
+  @if (isAdmin) {
+    <a routerLink="/admin/usuarios">Administrar usuarios</a>
+    <a routerLink="/admin/resenas">Administrar reseñas</a>
+  }
+
+  <!-- Logout -->
+  @if (isLoggedIn) {
+    <button (click)="logout()">Cerrar sesión</button>
+  }
+
+</nav>

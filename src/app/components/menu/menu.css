@@ -1,0 +1,71 @@
+/* ====== CONTENEDOR DEL MENÚ ====== */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 20px;
+  background: #1e3a8a; /* azul elegante */
+  color: white;
+  border-bottom: 3px solid #0f1e4d;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ====== ENLACES ====== */
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.25s, transform 0.15s;
+}
+
+.menu a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ====== BOTÓN LOGOUT ====== */
+.menu button {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.25s, transform 0.15s;
+}
+
+.menu button:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* ====== BADGE DE SOLICITUDES ====== */
+.badge {
+  background: #ef4444;
+  color: white;
+  padding: 2px 7px;
+  border-radius: 50%;
+  font-size: 12px;
+  margin-left: 6px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .menu {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .menu a, .menu button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,20 @@
+<h2 class="titulo">Mensajes</h2>
+
+@if (loading()) {
+  <p class="cargando">Cargando chats...</p>
+} @else {
+
+<ul class="lista-chats">
+  @for (c of chats(); track c.id) {
+    <li class="chat-item" (click)="abrirChat(c.id)">
+      <div class="avatar">{{ c.nombre[0] }}</div>
+
+      <div class="info">
+        <span class="nombre">{{ c.nombre }}</span>
+        <span class="ultimo">{{ c.ultimo_mensaje || 'Sin mensajes aún' }}</span>
+      </div>
+    </li>
+  }
+</ul>
+
+}

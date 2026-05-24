@@ -1,0 +1,73 @@
+<h2 class="titulo">Mis amistades</h2>
+
+<div class="contadores">
+  <span>Siguiendo: {{ totalSiguiendo() }}</span>
+  <span>Seguidores: {{ totalSeguidores() }}</span>
+</div>
+
+@if (loading()) {
+  <p class="cargando">Cargando datos...</p>
+} @else {
+
+<div class="contenedor">
+
+  <!-- SIGUIENDO -->
+  <div class="columna">
+    <h3>Usuarios que sigues</h3>
+
+    @if (siguiendo().length === 0) {
+      <p class="vacio">No sigues a nadie.</p>
+    } @else {
+      <ul class="lista">
+        @for (u of siguiendo(); track u.id) {
+          <li class="item">
+            <div class="info">
+              <span class="nombre">{{ u.nombre }}</span>
+              <span class="correo">{{ u.correo }}</span>
+            </div>
+
+            <button class="btn-msg" (click)="abrirChat(u.id)">
+              Mensaje
+            </button>
+
+            <button class="btn-unfollow" (click)="dejarDeSeguir(u.id)">
+              Dejar de seguir
+            </button>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+
+  <!-- SEGUIDORES -->
+  <div class="columna">
+    <h3>Usuarios que te siguen</h3>
+
+    @if (seguidores().length === 0) {
+      <p class="vacio">Nadie te sigue todavía.</p>
+    } @else {
+      <ul class="lista">
+        @for (u of seguidores(); track u.id) {
+          <li class="item">
+            <div class="info">
+              <span class="nombre">{{ u.nombre }}</span>
+              <span class="correo">{{ u.correo }}</span>
+            </div>
+
+            @if (!u.siguiendo) {
+              <button class="btn-followback" (click)="seguirDeVuelta(u.id)">
+                Seguir de vuelta
+              </button>
+            } @else {
+              <span class="ya-sigues">Ya lo sigues</span>
+            }
+
+          </li>
+        }
+      </ul>
+    }
+  </div>
+
+</div>
+
+}
