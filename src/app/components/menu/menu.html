@@ -27,10 +27,21 @@
     <a routerLink="/dm">{{ 'menu.mensajes' | translate }}</a>
   }
 
-  <!-- Enlace solo para ADMIN -->
+  <!-- DESPLEGABLE ADMIN -->
   @if (isAdmin) {
-    <a routerLink="/admin/usuarios">{{ 'menu.adminUsuarios' | translate }}</a>
-    <a routerLink="/admin/resenas">{{ 'menu.adminResenas' | translate }}</a>
+    <div class="admin-dropdown" [class.open]="adminOpen" (click)="adminOpen = !adminOpen">
+
+      <div class="admin-title">
+        ⚙️ {{ 'menu.admin' | translate }}
+      </div>
+
+      <div class="admin-menu" *ngIf="adminOpen">
+        <a routerLink="/admin/usuarios">{{ 'menu.adminUsuarios' | translate }}</a>
+        <a routerLink="/admin/resenas">{{ 'menu.adminResenas' | translate }}</a>
+        <a routerLink="/admin/mensajes">{{ 'menu.adminMensajes' | translate }}</a>
+      </div>
+
+    </div>
   }
 
   <!-- Selector de idioma -->

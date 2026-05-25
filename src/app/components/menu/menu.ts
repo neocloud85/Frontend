@@ -23,6 +23,8 @@ export class MenuComponent {
 
   // Contador reactivo
   solicitudesCount = this.amistad.solicitudesCount;
+  adminOpen = false;
+
 
   ngOnInit() {
     this.amistad.getSolicitudesPendientes().subscribe();
