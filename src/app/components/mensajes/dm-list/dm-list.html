@@ -1,20 +1,32 @@
-<h2 class="titulo">Mensajes</h2>
+<h2 class="titulo">{{ 'dm.title' | translate }}</h2>
 
 @if (loading()) {
-  <p class="cargando">Cargando chats...</p>
+  <p class="cargando">{{ 'dm.loading' | translate }}</p>
 } @else {
 
-<ul class="lista-chats">
-  @for (c of chats(); track c.id) {
-    <li class="chat-item" (click)="abrirChat(c.id)">
-      <div class="avatar">{{ c.nombre[0] }}</div>
+  @if (chats().length === 0) {
+    <p class="vacio">{{ 'dm.empty' | translate }}</p>
+  } @else {
 
-      <div class="info">
-        <span class="nombre">{{ c.nombre }}</span>
-        <span class="ultimo">{{ c.ultimo_mensaje || 'Sin mensajes aún' }}</span>
-      </div>
-    </li>
+    <ul class="lista-chats">
+      @for (c of chats(); track c.id) {
+        <li class="chat-item" (click)="abrirChat(c.id)">
+          
+          <div class="avatar">
+            {{ c.nombre[0] }}
+          </div>
+
+          <div class="info">
+            <span class="nombre">{{ c.nombre }}</span>
+            <span class="ultimo">
+              {{ c.ultimo_mensaje || ('dm.noMessages' | translate) }}
+            </span>
+          </div>
+
+        </li>
+      }
+    </ul>
+
   }
-</ul>
 
 }
