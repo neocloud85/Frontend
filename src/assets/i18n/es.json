@@ -151,6 +151,8 @@
 "admin.reviews.confirmDelete": "¿Seguro que quieres borrar esta reseña?",
 "admin.reviews.deleted": "Reseña eliminada",
 "admin.reviews.errorLoad": "Error al cargar reseñas",
-"admin.reviews.errorDelete": "No se pudo borrar la reseña"
+"admin.reviews.errorDelete": "No se pudo borrar la reseña",
+"menu.admin": "Administración",
+"menu.adminMensajes": "Mensajes (Admin)"
 
 }
