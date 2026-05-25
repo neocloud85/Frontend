@@ -18,10 +18,11 @@
 
     <a routerLink="/solicitudes" class="solicitudes-link">
       Solicitudes
-      @if (solicitudesCount > 0) {
-        <span class="badge">{{ solicitudesCount }}</span>
+      @if (solicitudesCount() > 0) {
+        <span class="badge">{{ solicitudesCount() }}</span>
       }
     </a>
+
     <a routerLink="/amistades">Amistades</a>
     <a routerLink="/dm">Mensajes</a>
   }
