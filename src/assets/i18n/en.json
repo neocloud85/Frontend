@@ -62,7 +62,11 @@
   "recomendaciones.loading": "Loading recommendations...",
   "recomendaciones.error": "Recommendations could not be loaded",
   "recomendaciones.empty": "There are no recommendations yet. Review some books with high ratings to get suggestions.",
-  "recomendaciones.details": "View details"
+  "recomendaciones.details": "View details",
+    "seguidos.title": "Reviews from users you follow",
+  "seguidos.loading": "Loading reviews...",
+  "seguidos.empty": "There are no reviews from the users you follow.",
+  "seguidos.noComment": "No comment"
 
 }
 

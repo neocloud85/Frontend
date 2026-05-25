@@ -61,6 +61,10 @@
   "recomendaciones.loading": "Cargando recomendaciones...",
   "recomendaciones.error": "No se pudieron cargar las recomendaciones",
   "recomendaciones.empty": "Aún no hay recomendaciones. Reseña algunos libros con puntuación alta para obtener sugerencias.",
-  "recomendaciones.details": "Ver detalles"
+  "recomendaciones.details": "Ver detalles",
+    "seguidos.title": "Reseñas de usuarios que sigues",
+  "seguidos.loading": "Cargando reseñas...",
+  "seguidos.empty": "No hay reseñas de los usuarios que sigues.",
+  "seguidos.noComment": "Sin comentario"
   
 }
