@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AdminService } from '../../../services/admin';
 import { ToastService } from '../../../services/toast';
 import { TranslatePipe } from '../../../pipes/translate-pipe';
+import { TranslateService } from '../../../services/translate';
 
 @Component({
   selector: 'app-admin-usuarios',
@@ -22,7 +23,7 @@ export class AdminUsuariosComponent {
 
   private admin = inject(AdminService);
   private toast = inject(ToastService);
-  private t = inject(TranslatePipe);
+  private translate = inject(TranslateService); // 🔥 CORRECTO
 
   usuarios = signal<any[]>([]);
   totalPages = signal(1);
@@ -45,7 +46,7 @@ export class AdminUsuariosComponent {
       },
       error: () => {
         this.loading.set(false);
-        this.toast.error(this.t.transform('admin.users.errorLoad'));
+        this.toast.error(this.translate.t('admin.users.errorLoad'));
       }
     });
   }
@@ -59,21 +60,21 @@ export class AdminUsuariosComponent {
 
     this.admin.buscarUsuarios(q).subscribe({
       next: (res) => this.usuarios.set(res),
-      error: () => this.toast.error(this.t.transform('admin.users.errorSearch'))
+      error: () => this.toast.error(this.translate.t('admin.users.errorSearch'))
     });
   }
 
   borrar(id: string) {
-    this.toast.confirm(this.t.transform('admin.users.confirmDelete'))
+    this.toast.confirm(this.translate.t('admin.users.confirmDelete'))
       .then(result => {
         if (!result.isConfirmed) return;
 
         this.admin.borrarUsuario(id).subscribe({
           next: () => {
-            this.toast.success(this.t.transform('admin.users.deleted'));
+            this.toast.success(this.translate.t('admin.users.deleted'));
             this.cargarUsuarios();
           },
-          error: () => this.toast.error(this.t.transform('admin.users.errorDelete'))
+          error: () => this.toast.error(this.translate.t('admin.users.errorDelete'))
         });
       });
   }
@@ -81,10 +82,10 @@ export class AdminUsuariosComponent {
   hacerAdmin(id: string) {
     this.admin.hacerAdmin(id).subscribe({
       next: () => {
-        this.toast.success(this.t.transform('admin.users.updatedAdmin'));
+        this.toast.success(this.translate.t('admin.users.updatedAdmin'));
         this.cargarUsuarios();
       },
-      error: () => this.toast.error(this.t.transform('admin.users.errorAdmin'))
+      error: () => this.toast.error(this.translate.t('admin.users.errorAdmin'))
     });
   }
 }
