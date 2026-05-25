@@ -3,11 +3,13 @@ import { Router, RouterLink } from '@angular/router';
 import { Books } from '../../services/books';
 import { DecimalPipe, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '../../pipes/translate-pipe';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink, DecimalPipe, FormsModule, CommonModule],
+  imports: [RouterLink, DecimalPipe, FormsModule, CommonModule, TranslatePipe],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
