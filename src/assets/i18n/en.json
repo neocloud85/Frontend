@@ -22,6 +22,13 @@
   "login.passwordPlaceholder": "Enter your password",
 
   "login.noAccount": "Don't have an account?",
-  "login.registerHere": "Register here"
+  "login.registerHere": "Register here",
+    "register.title": "Create account",
+  "register.submit": "Register",
+  "register.back": "Go back",
+
+  "register.namePlaceholder": "Name",
+  "register.emailPlaceholder": "Email",
+  "register.passwordPlaceholder": "Password"
 }
 

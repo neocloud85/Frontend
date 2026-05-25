@@ -21,5 +21,12 @@
   "login.passwordPlaceholder": "Introduce tu contraseña",
 
   "login.noAccount": "¿No tienes cuenta?",
-  "login.registerHere": "Regístrate aquí"
+  "login.registerHere": "Regístrate aquí",
+    "register.title": "Crear cuenta",
+  "register.submit": "Registrarse",
+  "register.back": "Volver atrás",
+
+  "register.namePlaceholder": "Nombre",
+  "register.emailPlaceholder": "Correo electrónico",
+  "register.passwordPlaceholder": "Contraseña"
 }
