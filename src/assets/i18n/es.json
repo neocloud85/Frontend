@@ -52,6 +52,10 @@
   "dashboard.next": "Siguiente",
   "dashboard.last": "Final",
   "dashboard.page": "Página",
-  "dashboard.of": "de"
+  "dashboard.of": "de",
+    "myReviews.title": "Mis reseñas publicadas",
+  "myReviews.loading": "Cargando reseñas...",
+  "myReviews.noComment": "Sin comentario",
+  "myReviews.empty": "Todavía no has publicado ninguna reseña."
   
 }

@@ -53,6 +53,10 @@
   "dashboard.next": "Next",
   "dashboard.last": "Last",
   "dashboard.page": "Page",
-  "dashboard.of": "of"
+  "dashboard.of": "of",
+    "myReviews.title": "My published reviews",
+  "myReviews.loading": "Loading reviews...",
+  "myReviews.noComment": "No comment",
+  "myReviews.empty": "You haven't published any reviews yet."
 }
 
