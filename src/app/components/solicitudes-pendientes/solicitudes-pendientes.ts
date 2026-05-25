@@ -6,7 +6,8 @@ import { AmistadService } from '../../services/amistad';
   selector: 'app-solicitudes-pendientes',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './solicitudes-pendientes.html'
+  templateUrl: './solicitudes-pendientes.html',
+  styleUrls: ['./solicitudes-pendientes.css']
 })
 export class SolicitudesPendientesComponent {
 
@@ -25,7 +26,7 @@ export class SolicitudesPendientesComponent {
     this.amistad.getSolicitudesPendientes().subscribe({
       next: (data) => {
         this.solicitudes.set(data);
-        this.loading.set(false); // ← AHORA Angular refresca SIEMPRE
+        this.loading.set(false);
       },
       error: () => {
         this.loading.set(false);
@@ -35,13 +36,21 @@ export class SolicitudesPendientesComponent {
 
   aceptar(id: number) {
     this.amistad.aceptarSolicitud(id).subscribe(() => {
-      this.solicitudes.update(list => list.filter(s => s.id !== id));
+      this.solicitudes.update(list => {
+        const updated = list.filter(s => s.id !== id);
+        this.amistad.solicitudesCount.set(updated.length);
+        return updated;
+      });
     });
   }
 
   rechazar(id: number) {
     this.amistad.rechazarSolicitud(id).subscribe(() => {
-      this.solicitudes.update(list => list.filter(s => s.id !== id));
+      this.solicitudes.update(list => {
+        const updated = list.filter(s => s.id !== id);
+        this.amistad.solicitudesCount.set(updated.length);
+        return updated;
+      });
     });
   }
 }
