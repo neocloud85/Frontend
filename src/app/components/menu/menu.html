@@ -27,20 +27,18 @@
     <a routerLink="/dm">{{ 'menu.mensajes' | translate }}</a>
   }
 
-  <!-- DESPLEGABLE ADMIN -->
+  <!-- DROPDOWN ADMIN -->
   @if (isAdmin) {
-    <div class="admin-dropdown" [class.open]="adminOpen" (click)="adminOpen = !adminOpen">
-
-      <div class="admin-title">
+    <div class="dropdown">
+      <button class="dropdown-btn">
         ⚙️ {{ 'menu.admin' | translate }}
-      </div>
+      </button>
 
-      <div class="admin-menu" *ngIf="adminOpen">
+      <div class="dropdown-content">
         <a routerLink="/admin/usuarios">{{ 'menu.adminUsuarios' | translate }}</a>
         <a routerLink="/admin/resenas">{{ 'menu.adminResenas' | translate }}</a>
         <a routerLink="/admin/mensajes">{{ 'menu.adminMensajes' | translate }}</a>
       </div>
-
     </div>
   }
 
