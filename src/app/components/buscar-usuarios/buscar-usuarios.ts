@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AmistadService } from '../../services/amistad';
-import { Subject, debounceTime, distinctUntilChanged, switchMap , of } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, switchMap, of } from 'rxjs';
 import Swal from 'sweetalert2';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
-// 🔥 Toast global para este componente
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -19,7 +19,7 @@ const Toast = Swal.mixin({
 @Component({
   selector: 'app-buscar-usuarios',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './buscar-usuarios.html'
 })
 export class BuscarUsuariosComponent {
@@ -28,6 +28,7 @@ export class BuscarUsuariosComponent {
 
   query = '';
   resultados: any[] = [];
+  todosUsuarios: any[] = [];
   loading = false;
 
   private search$ = new Subject<string>();
@@ -35,10 +36,17 @@ export class BuscarUsuariosComponent {
   constructor() {
     this.search$
       .pipe(
-        debounceTime(300),
+        debounceTime(250),
         distinctUntilChanged(),
         switchMap(texto => {
-          if (texto.trim().length < 2) {
+          texto = texto.trim();
+
+          if (texto.length === 0) {
+            this.resultados = [...this.todosUsuarios];
+            return of([]);
+          }
+
+          if (texto.length < 2) {
             this.resultados = [];
             return of([]);
           }
@@ -48,9 +56,24 @@ export class BuscarUsuariosComponent {
         })
       )
       .subscribe((data: any) => {
-        this.resultados = data || [];
+        if (this.query.trim().length >= 2) {
+          this.resultados = data || [];
+        }
         this.loading = false;
       });
+  }
+
+  ngOnInit() {
+    this.cargarTodosUsuarios();
+  }
+
+  cargarTodosUsuarios() {
+    this.amistad.getAllUsers().subscribe({
+      next: (users) => {
+        this.todosUsuarios = users;
+        this.resultados = [...users];
+      }
+    });
   }
 
   onInput() {
@@ -62,13 +85,13 @@ export class BuscarUsuariosComponent {
       next: () => {
         Toast.fire({
           icon: 'success',
-          title: 'Solicitud enviada'
+          title: 'buscarUsuarios.toastSuccess' // opcional si luego lo pasas por translate
         });
       },
       error: () => {
         Toast.fire({
           icon: 'error',
-          title: 'Error al enviar'
+          title: 'buscarUsuarios.toastError' // idem
         });
       }
     });

@@ -1,19 +1,19 @@
-<h2>Buscar usuarios</h2>
+<h2>{{ 'buscarUsuarios.title' | translate }}</h2>
 
 <input
   type="text"
   [(ngModel)]="query"
   (input)="onInput()"
-  placeholder="Escribe un nombre..."
+  [placeholder]="'buscarUsuarios.placeholder' | translate"
   class="input"
 />
 
 @if (loading) {
-  <p>Cargando...</p>
+  <p>{{ 'buscarUsuarios.loading' | translate }}</p>
 }
 
 @if (!loading && resultados.length === 0 && query.length >= 2) {
-  <p>No se encontraron usuarios.</p>
+  <p>{{ 'buscarUsuarios.noResults' | translate }}</p>
 }
 
 @if (resultados.length > 0) {
@@ -25,7 +25,7 @@
         </div>
 
         <button (click)="enviarSolicitud(u.id)">
-          Enviar solicitud
+          {{ 'buscarUsuarios.sendRequest' | translate }}
         </button>
       </div>
     }
