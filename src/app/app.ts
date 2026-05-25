@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { authInterceptor } from './interceptors/auth-interceptor';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu';
+import { FooterComponent } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent],
+  imports: [RouterOutlet, MenuComponent, FooterComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

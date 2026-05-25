@@ -132,5 +132,10 @@ export const routes: Routes = [
     loadComponent: () => 
       import('./components/mensajes/dm-chat/dm-chat')
         .then(c => c.DmChatComponent)
-  }
+  },
+  {
+  path: 'sobre-nosotros',
+  loadComponent: () => import('./components/sobre-nosotros/sobre-nosotros').then(m => m.SobreNosotrosComponent)
+}
+
 ];
