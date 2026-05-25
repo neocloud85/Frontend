@@ -1,0 +1,40 @@
+<h2>{{ 'admin.messages.title' | translate }}</h2>
+
+@if (loading()) {
+  <p>{{ 'admin.messages.loading' | translate }}</p>
+} @else {
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>{{ 'admin.messages.userA' | translate }}</th>
+      <th>{{ 'admin.messages.userB' | translate }}</th>
+      <th>{{ 'admin.messages.lastMessage' | translate }}</th>
+      <th>{{ 'admin.messages.date' | translate }}</th>
+      <th>{{ 'admin.messages.actions' | translate }}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (c of chats(); track c.id) {
+      <tr>
+        <td>{{ c.usuarioA }}</td>
+        <td>{{ c.usuarioB }}</td>
+        <td>{{ c.ultimo_mensaje }}</td>
+        <td>{{ c.fecha | date:'short' }}</td>
+
+        <td class="acciones">
+          <button routerLink="/admin/mensajes/{{ c.id }}" class="btn ver">
+            {{ 'admin.messages.viewChat' | translate }}
+          </button>
+
+          <button class="btn borrar" (click)="borrarChat(c.id)">
+            {{ 'admin.messages.deleteChat' | translate }}
+          </button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+}

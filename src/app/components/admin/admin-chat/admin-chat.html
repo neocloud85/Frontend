@@ -1,0 +1,23 @@
+<h2>{{ 'admin.messages.chatTitle' | translate }}</h2>
+
+@if (loading()) {
+  <p>{{ 'admin.messages.loadingChat' | translate }}</p>
+} @else {
+
+<div class="chat-container">
+
+  @for (m of mensajes(); track m.id) {
+    <div class="mensaje">
+      <div class="autor">{{ m.remitente_nombre }}</div>
+      <div class="contenido">{{ m.contenido }}</div>
+      <div class="fecha">{{ m.fecha | date:'short' }}</div>
+
+      <button class="btn borrar" (click)="borrarMensaje(m.id)">
+        {{ 'admin.messages.deleteMessage' | translate }}
+      </button>
+    </div>
+  }
+
+</div>
+
+}
