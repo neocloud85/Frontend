@@ -98,7 +98,9 @@
 "dm.title": "Mensajes",
 "dm.loading": "Cargando chats...",
 "dm.empty": "No tienes chats todavía.",
-"dm.noMessages": "Sin mensajes aún"
-
+"dm.noMessages": "Sin mensajes aún",
+"dm.chatWith": "Chat con",
+"dm.writeMessage": "Escribe un mensaje...",
+"dm.send": "Enviar"
 
 }

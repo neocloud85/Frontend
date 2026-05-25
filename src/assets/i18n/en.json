@@ -99,7 +99,10 @@
 "dm.title": "Messages",
 "dm.loading": "Loading chats...",
 "dm.empty": "You have no chats yet.",
-"dm.noMessages": "No messages yet"
+"dm.noMessages": "No messages yet",
+"dm.chatWith": "Chat with",
+"dm.writeMessage": "Write a message...",
+"dm.send": "Send"
 
 }
 
