@@ -56,6 +56,35 @@
   display: inline-block;
 }
 
+/* ====== SELECTOR DE IDIOMA ====== */
+.idioma-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto; /* empuja el selector a la derecha */
+}
+
+.idioma-selector button {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.25s, transform 0.15s;
+}
+
+.idioma-selector button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.idioma-selector button.active {
+  background: #2563eb; /* azul brillante */
+  border-color: #1d4ed8;
+}
+
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   .menu {

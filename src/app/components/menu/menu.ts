@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { AmistadService } from '../../services/amistad';
 import { AuthService } from '../../services/auth';
+import { LanguageService } from '../../services/language';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './menu.html',
   styleUrl: './menu.css',
 })
@@ -17,15 +19,21 @@ export class MenuComponent {
   private amistad = inject(AmistadService);
   auth = inject(AuthService);
 
-  // Ahora el contador es un SIGNAL, no un número
+  // Servicio de idioma
+  lang = inject(LanguageService);
+
+  // Contador reactivo
   solicitudesCount = this.amistad.solicitudesCount;
 
   ngOnInit() {
-    // Cargar solicitudes al entrar (esto actualiza el signal automáticamente)
     this.amistad.getSolicitudesPendientes().subscribe();
 
     console.log("USER FROM TOKEN:", this.auth.getUserFromToken());
     console.log("IS ADMIN:", this.auth.isAdmin());
+  }
+
+  changeLang(lang: string) {
+    this.lang.setLanguage(lang);
   }
 
   logout() {

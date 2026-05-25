@@ -2,40 +2,56 @@
 
   <!-- Enlaces públicos -->
   @if (!isLoggedIn) {
-    <a routerLink="/">Inicio</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/register">Registro</a>
+    <a routerLink="/">{{ 'menu.inicio' | translate }}</a>
+    <a routerLink="/login">{{ 'menu.login' | translate }}</a>
+    <a routerLink="/register">{{ 'menu.register' | translate }}</a>
   }
 
   <!-- Enlaces para usuarios logueados -->
   @if (isLoggedIn) {
 
-    <a routerLink="/dashboard">Inicio</a>
-    <a routerLink="/mis-resenas">Mis reseñas publicadas</a>
-    <a routerLink="/recomendados">Recomendaciones para ti</a>
-    <a routerLink="/resenas-usuarios">Reseñas</a>
-    <a routerLink="/buscar-usuarios">Buscar usuarios</a>
+    <a routerLink="/dashboard">{{ 'menu.inicio' | translate }}</a>
+    <a routerLink="/mis-resenas">{{ 'menu.misResenas' | translate }}</a>
+    <a routerLink="/recomendados">{{ 'menu.recomendados' | translate }}</a>
+    <a routerLink="/resenas-usuarios">{{ 'menu.resenasUsuarios' | translate }}</a>
+    <a routerLink="/buscar-usuarios">{{ 'menu.buscarUsuarios' | translate }}</a>
 
     <a routerLink="/solicitudes" class="solicitudes-link">
-      Solicitudes
+      {{ 'menu.solicitudes' | translate }}
       @if (solicitudesCount() > 0) {
         <span class="badge">{{ solicitudesCount() }}</span>
       }
     </a>
 
-    <a routerLink="/amistades">Amistades</a>
-    <a routerLink="/dm">Mensajes</a>
+    <a routerLink="/amistades">{{ 'menu.amistades' | translate }}</a>
+    <a routerLink="/dm">{{ 'menu.mensajes' | translate }}</a>
   }
 
   <!-- Enlace solo para ADMIN -->
   @if (isAdmin) {
-    <a routerLink="/admin/usuarios">Administrar usuarios</a>
-    <a routerLink="/admin/resenas">Administrar reseñas</a>
+    <a routerLink="/admin/usuarios">{{ 'menu.adminUsuarios' | translate }}</a>
+    <a routerLink="/admin/resenas">{{ 'menu.adminResenas' | translate }}</a>
   }
+
+  <!-- Selector de idioma -->
+  <div class="idioma-selector">
+    🌐
+    <button 
+      [class.active]="lang.isSpanish()" 
+      (click)="changeLang('es')">
+      ES
+    </button>
+
+    <button 
+      [class.active]="lang.isEnglish()" 
+      (click)="changeLang('en')">
+      EN
+    </button>
+  </div>
 
   <!-- Logout -->
   @if (isLoggedIn) {
-    <button (click)="logout()">Cerrar sesión</button>
+    <button (click)="logout()">{{ 'menu.logout' | translate }}</button>
   }
 
 </nav>
