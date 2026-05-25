@@ -1,6 +1,6 @@
-import { Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule,Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AmistadService } from '../../services/amistad';
 import { AuthService } from '../../services/auth';
 
@@ -12,36 +12,32 @@ import { AuthService } from '../../services/auth';
   styleUrl: './menu.css',
 })
 export class MenuComponent {
-  private router = inject(Router);
 
+  private router = inject(Router);
   private amistad = inject(AmistadService);
   auth = inject(AuthService);
 
-  solicitudesCount = 0;
+  // Ahora el contador es un SIGNAL, no un número
+  solicitudesCount = this.amistad.solicitudesCount;
 
   ngOnInit() {
-    // Contador reactivo de solicitudes
-    this.amistad.getSolicitudesCount().subscribe(n => {
-      this.solicitudesCount = n;
-    });
-
-    // Cargar solicitudes al entrar
+    // Cargar solicitudes al entrar (esto actualiza el signal automáticamente)
     this.amistad.getSolicitudesPendientes().subscribe();
-    console.log("USER FROM TOKEN:", this.auth.getUserFromToken());
-console.log("IS ADMIN:", this.auth.isAdmin());
 
+    console.log("USER FROM TOKEN:", this.auth.getUserFromToken());
+    console.log("IS ADMIN:", this.auth.isAdmin());
   }
 
   logout() {
-  localStorage.removeItem('token');
-  this.router.navigate(['/']);
-}
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
+  }
 
   get isLoggedIn() {
-  return this.auth.isLoggedIn();
-}
+    return this.auth.isLoggedIn();
+  }
 
-get isAdmin() {
-  return this.auth.isAdmin();
-}
+  get isAdmin() {
+    return this.auth.isAdmin();
+  }
 }
