@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { AmistadService } from '../../services/amistad';
 import { AuthService } from '../../services/auth';
-import { LanguageService } from '../../services/language';
-import { TranslatePipe } from '../../pipes/translate-pipe';
-
+import { TranslateService } from '../../services/translate';   // ⬅️ CAMBIO IMPORTANTE
+import { TranslatePipe } from '../../pipes/translate-pipe'; // ⬅️ CAMBIO IMPORTANTE
 @Component({
   selector: 'app-menu',
   standalone: true,
@@ -19,8 +18,8 @@ export class MenuComponent {
   private amistad = inject(AmistadService);
   auth = inject(AuthService);
 
-  // Servicio de idioma
-  lang = inject(LanguageService);
+  // Servicio de traducción REAL
+  translate = inject(TranslateService);   // ⬅️ CAMBIO IMPORTANTE
 
   // Contador reactivo
   solicitudesCount = this.amistad.solicitudesCount;
@@ -33,7 +32,7 @@ export class MenuComponent {
   }
 
   changeLang(lang: string) {
-    this.lang.setLanguage(lang);
+    this.translate.setLanguage(lang);   // ⬅️ CAMBIO IMPORTANTE
   }
 
   logout() {
