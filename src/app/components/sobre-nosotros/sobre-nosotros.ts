@@ -6,8 +6,8 @@ import { TranslatePipe } from '../../pipes/translate-pipe';
   selector: 'app-sobre-nosotros',
   standalone: true,
   imports: [CommonModule, TranslatePipe],
-  templateUrl: './sobre-nosotros.component.html',
-  styleUrls: ['./sobre-nosotros.component.css']
+  templateUrl: './sobre-nosotros.html',
+  styleUrls: ['./sobre-nosotros.css']
 })
 export class SobreNosotrosComponent {
 

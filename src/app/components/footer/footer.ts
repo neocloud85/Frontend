@@ -6,7 +6,7 @@ import { TranslatePipe } from '../../pipes/translate-pipe';
   selector: 'app-footer',
   standalone: true,
   imports: [CommonModule, TranslatePipe],
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  templateUrl: './footer.html',
+  styleUrls: ['./footer.css']
 })
 export class FooterComponent {}
