@@ -1,0 +1,30 @@
+.footer {
+  width: 100%;
+  padding: 20px 0;
+  background: #1a1a1a;
+  color: #fff;
+  text-align: center;
+  margin-top: 40px;
+  border-top: 2px solid #333;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer .autor {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.footer .sobre {
+  color: #4ea3ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer .sobre:hover {
+  text-decoration: underline;
+}

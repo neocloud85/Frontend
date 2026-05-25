@@ -1,0 +1,17 @@
+<h2>{{ 'about.title' | translate }}</h2>
+
+<p class="intro">
+  {{ 'about.description' | translate }}
+</p>
+
+<div class="links">
+
+  <a [href]="videoUrl" target="_blank" class="link-item">
+    🎬 {{ 'about.video' | translate }}
+  </a>
+
+  <a [href]="presentacionUrl" target="_blank" class="link-item">
+    📄 {{ 'about.presentation' | translate }}
+  </a>
+
+</div>
