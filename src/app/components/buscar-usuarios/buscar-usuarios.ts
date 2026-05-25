@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AmistadService } from '../../services/amistad';
-import { Subject, debounceTime, distinctUntilChanged, switchMap, of } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, switchMap, of, startWith } from 'rxjs';
 import Swal from 'sweetalert2';
 import { TranslatePipe } from '../../pipes/translate-pipe';
 
@@ -26,6 +26,7 @@ const Toast = Swal.mixin({
 export class BuscarUsuariosComponent {
 
   private amistad = inject(AmistadService);
+  private cdr = inject(ChangeDetectorRef);
 
   query = '';
   resultados: any[] = [];
@@ -37,6 +38,7 @@ export class BuscarUsuariosComponent {
   constructor() {
     this.search$
       .pipe(
+        startWith(''), // 🔥 EMITE UN VALOR INICIAL
         debounceTime(250),
         distinctUntilChanged(),
         switchMap(texto => {
@@ -44,7 +46,7 @@ export class BuscarUsuariosComponent {
 
           if (texto.length === 0) {
             this.resultados = [...this.todosUsuarios];
-            return of(null); // <-- NO pisa resultados
+            return of(null);
           }
 
           if (texto.length < 2) {
@@ -61,6 +63,7 @@ export class BuscarUsuariosComponent {
           this.resultados = data;
         }
         this.loading = false;
+        this.cdr.detectChanges(); // 🔥 fuerza refresco
       });
   }
 
@@ -72,7 +75,10 @@ export class BuscarUsuariosComponent {
     this.amistad.getAllUsers().subscribe({
       next: (users) => {
         this.todosUsuarios = users;
-        this.resultados = [...users]; // <-- YA SE MUESTRAN DE PRIMERAS
+        this.resultados = [...users];
+
+        this.cdr.detectChanges(); // 🔥 refresca la vista
+        this.search$.next('');    // 🔥 dispara búsqueda inicial
       }
     });
   }
@@ -89,7 +95,6 @@ export class BuscarUsuariosComponent {
           title: 'buscarUsuarios.toastSuccess'
         });
 
-        // Actualizar estado del usuario
         this.resultados = this.resultados.map(u =>
           u.id === id ? { ...u, pendiente: 1 } : u
         );
