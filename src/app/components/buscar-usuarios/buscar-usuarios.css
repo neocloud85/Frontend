@@ -1,16 +1,9 @@
-/* ============================
-   TÍTULO
-============================ */
 h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
   text-align: center;
-  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 2rem;
 }
 
-/* ============================
-   INPUT DE BÚSQUEDA
-============================ */
 .input {
   width: 100%;
   max-width: 450px;
@@ -20,7 +13,7 @@ h2 {
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
-  transition: border-color .2s, box-shadow .2s;
+  transition: 0.2s;
 }
 
 .input:focus {
@@ -29,20 +22,14 @@ h2 {
   outline: none;
 }
 
-/* ============================
-   LISTA DE RESULTADOS
-============================ */
 .resultados {
+  max-width: 600px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
-/* ============================
-   TARJETA DE USUARIO
-============================ */
 .usuario-card {
   background: #fff;
   padding: 14px 18px;
@@ -51,56 +38,35 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform .15s, box-shadow .15s;
 }
 
-.usuario-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
-}
-
-.usuario-card .info strong {
-  font-size: 1.1rem;
-}
-
-/* ============================
-   BOTÓN DE SOLICITUD
-============================ */
 .usuario-card button {
-  background: #4a90e2;
-  color: white;
-  border: none;
   padding: 8px 14px;
   border-radius: 6px;
+  border: none;
   cursor: pointer;
-  transition: background .2s, transform .2s;
+  transition: 0.2s;
 }
 
-.usuario-card button:hover {
+.usuario-card .enviar {
+  background: #4a90e2;
+  color: white;
+}
+
+.usuario-card .enviar:hover {
   background: #3a78c2;
-  transform: scale(1.05);
 }
 
-/* ============================
-   MENSAJES
-============================ */
-p {
-  text-align: center;
-  margin-top: 10px;
-  color: #555;
+.usuario-card .pendiente {
+  background: #f0ad4e;
+  color: white;
 }
 
-.loading {
-  font-style: italic;
+.usuario-card .siguiendo {
+  background: #5cb85c;
+  color: white;
 }
 
-.empty {
-  color: #888;
-}
-
-/* ============================
-   RESPONSIVE
-============================ */
 @media (max-width: 600px) {
   .usuario-card {
     flex-direction: column;

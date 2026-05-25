@@ -21,7 +21,7 @@ const Toast = Swal.mixin({
   standalone: true,
   imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './buscar-usuarios.html',
-    styleUrl: './buscar-usuarios.css',
+  styleUrl: './buscar-usuarios.css',
 })
 export class BuscarUsuariosComponent {
 
@@ -44,14 +44,12 @@ export class BuscarUsuariosComponent {
 
           if (texto.length === 0) {
             this.resultados = [...this.todosUsuarios];
-            this.loading = false;
-            return of(null); // <-- no pisa resultados
+            return of(null); // <-- NO pisa resultados
           }
-
 
           if (texto.length < 2) {
             this.resultados = [];
-            return of([]);
+            return of(null);
           }
 
           this.loading = true;
@@ -60,11 +58,10 @@ export class BuscarUsuariosComponent {
       )
       .subscribe((data: any) => {
         if (data && this.query.trim().length >= 2) {
-          this.resultados = data || [];
+          this.resultados = data;
         }
         this.loading = false;
       });
-
   }
 
   ngOnInit() {
@@ -75,7 +72,7 @@ export class BuscarUsuariosComponent {
     this.amistad.getAllUsers().subscribe({
       next: (users) => {
         this.todosUsuarios = users;
-        this.resultados = [...users];
+        this.resultados = [...users]; // <-- YA SE MUESTRAN DE PRIMERAS
       }
     });
   }
@@ -89,13 +86,18 @@ export class BuscarUsuariosComponent {
       next: () => {
         Toast.fire({
           icon: 'success',
-          title: 'buscarUsuarios.toastSuccess' // opcional si luego lo pasas por translate
+          title: 'buscarUsuarios.toastSuccess'
         });
+
+        // Actualizar estado del usuario
+        this.resultados = this.resultados.map(u =>
+          u.id === id ? { ...u, pendiente: 1 } : u
+        );
       },
       error: () => {
         Toast.fire({
           icon: 'error',
-          title: 'buscarUsuarios.toastError' // idem
+          title: 'buscarUsuarios.toastError'
         });
       }
     });
