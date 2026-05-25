@@ -1,7 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +11,8 @@ export class AmistadService {
   private http = inject(HttpClient);
   private api = environment.apiUrl;
 
-  // Contador global de solicitudes pendientes
-  private solicitudesCount$ = new BehaviorSubject<number>(0);
-
-  // Observable para que los componentes se suscriban
-  getSolicitudesCount() {
-    return this.solicitudesCount$.asObservable();
-  }
-
-  // Setter interno para actualizar el contador
-  setSolicitudesCount(n: number) {
-    this.solicitudesCount$.next(n);
-  }
+  // Contador global con SIGNAL
+  solicitudesCount = signal(0);
 
   // Buscar usuarios por nombre
   buscarUsuarios(q: string) {
@@ -31,43 +21,42 @@ export class AmistadService {
 
   // Enviar solicitud
   enviarSolicitud(receptor: string) {
-  console.log("📤 Enviando receptor:", receptor);
-  return this.http.post(`${this.api}/amistad/enviar`, { receptor });
-}
-
+    console.log("📤 Enviando receptor:", receptor);
+    return this.http.post(`${this.api}/amistad/enviar`, { receptor });
+  }
 
   // Obtener solicitudes pendientes (y actualizar contador)
   getSolicitudesPendientes() {
     return this.http
       .get<any[]>(`${this.api}/amistad/pendientes`)
       .pipe(
-        tap(data => this.setSolicitudesCount(data.length))
+        tap(data => this.solicitudesCount.set(data.length))
       );
   }
 
-  // Aceptar solicitud (el componente ajusta el contador con la lista actual)
+  // Aceptar solicitud
   aceptarSolicitud(id: number) {
     return this.http.post(`${this.api}/amistad/aceptar`, { id });
   }
 
-  // Rechazar solicitud (igual que aceptar)
+  // Rechazar solicitud
   rechazarSolicitud(id: number) {
     return this.http.post(`${this.api}/amistad/rechazar`, { id });
   }
-  
+
   getSiguiendo(id: string) {
-  return this.http.get<any[]>(`${this.api}/amistad/siguiendo/${id}`);
-}
+    return this.http.get<any[]>(`${this.api}/amistad/siguiendo/${id}`);
+  }
 
-getSeguidores(id: string) {
-  return this.http.get<any[]>(`${this.api}/amistad/seguidores/${id}`);
-}
-unfollow(id: string) {
-  return this.http.delete(`${this.api}/amistad/unfollow/${id}`);
-}
+  getSeguidores(id: string) {
+    return this.http.get<any[]>(`${this.api}/amistad/seguidores/${id}`);
+  }
 
-followBack(id: string) {
-  return this.http.post(`${this.api}/amistad/follow/${id}`, {});
-}
+  unfollow(id: string) {
+    return this.http.delete(`${this.api}/amistad/unfollow/${id}`);
+  }
 
+  followBack(id: string) {
+    return this.http.post(`${this.api}/amistad/follow/${id}`, {});
+  }
 }
