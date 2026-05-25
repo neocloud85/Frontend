@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { AmistadService } from '../../services/amistad';
 import { AuthService } from '../../services/auth';
 import { ToastService } from '../../services/toast';
+import { TranslatePipe } from '../../pipes/translate-pipe';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-amistades',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './amistades.html',
   styleUrl: './amistades.css',
 })
@@ -28,37 +30,38 @@ export class AmistadesComponent {
   ngOnInit() {
     const user = this.auth.getUserFromToken();
 
-    this.amistad.getSiguiendo(user.id).subscribe(sig => {
-      this.siguiendo.set(sig);
-      this.totalSiguiendo.set(sig.length);
+    this.loading.set(true);
 
-      this.amistad.getSeguidores(user.id).subscribe(seg => {
-        this.seguidores.set(seg);
-        this.totalSeguidores.set(seg.length);
+    forkJoin({
+      siguiendo: this.amistad.getSiguiendo(user.id),
+      seguidores: this.amistad.getSeguidores(user.id)
+    }).subscribe(({ siguiendo, seguidores }) => {
+      this.siguiendo.set(siguiendo);
+      this.seguidores.set(seguidores);
 
-        this.loading.set(false);
-      });
+      this.totalSiguiendo.set(siguiendo.length);
+      this.totalSeguidores.set(seguidores.length);
+
+      this.loading.set(false);
     });
   }
 
- dejarDeSeguir(id: string) {
-  this.amistad.unfollow(id).subscribe(() => {
-    this.toast.info('Has dejado de seguir a este usuario');
-    this.ngOnInit(); // recarga los datos
-  });
-}
+  dejarDeSeguir(id: string) {
+    this.amistad.unfollow(id).subscribe(() => {
+      this.toast.info('amistades.unfollowed');
+      this.ngOnInit();
+    });
+  }
 
-
-seguirDeVuelta(id: string) {
-  this.amistad.followBack(id).subscribe({
-    next: () => {
-      this.toast.success('Ahora sigues a este usuario');
-      this.ngOnInit(); // recarga los datos
-    },
-    error: () => this.toast.error('No se pudo seguir de vuelta')
-  });
-}
-
+  seguirDeVuelta(id: string) {
+    this.amistad.followBack(id).subscribe({
+      next: () => {
+        this.toast.success('amistades.followedBack');
+        this.ngOnInit();
+      },
+      error: () => this.toast.error('amistades.errorFollowBack')
+    });
+  }
 
   abrirChat(id: string) {
     this.router.navigate(['/dm', id]);

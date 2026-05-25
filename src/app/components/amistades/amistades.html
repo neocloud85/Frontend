@@ -1,22 +1,22 @@
-<h2 class="titulo">Mis amistades</h2>
+<h2 class="titulo">{{ 'amistades.title' | translate }}</h2>
 
 <div class="contadores">
-  <span>Siguiendo: {{ totalSiguiendo() }}</span>
-  <span>Seguidores: {{ totalSeguidores() }}</span>
+  <span>{{ 'amistades.following' | translate }}: {{ totalSiguiendo() }}</span>
+  <span>{{ 'amistades.followers' | translate }}: {{ totalSeguidores() }}</span>
 </div>
 
 @if (loading()) {
-  <p class="cargando">Cargando datos...</p>
+  <p class="cargando">{{ 'amistades.loading' | translate }}</p>
 } @else {
 
 <div class="contenedor">
 
   <!-- SIGUIENDO -->
   <div class="columna">
-    <h3>Usuarios que sigues</h3>
+    <h3>{{ 'amistades.youFollow' | translate }}</h3>
 
     @if (siguiendo().length === 0) {
-      <p class="vacio">No sigues a nadie.</p>
+      <p class="vacio">{{ 'amistades.noFollowing' | translate }}</p>
     } @else {
       <ul class="lista">
         @for (u of siguiendo(); track u.id) {
@@ -27,11 +27,11 @@
             </div>
 
             <button class="btn-msg" (click)="abrirChat(u.id)">
-              Mensaje
+              {{ 'amistades.message' | translate }}
             </button>
 
             <button class="btn-unfollow" (click)="dejarDeSeguir(u.id)">
-              Dejar de seguir
+              {{ 'amistades.unfollow' | translate }}
             </button>
           </li>
         }
@@ -41,10 +41,10 @@
 
   <!-- SEGUIDORES -->
   <div class="columna">
-    <h3>Usuarios que te siguen</h3>
+    <h3>{{ 'amistades.followYou' | translate }}</h3>
 
     @if (seguidores().length === 0) {
-      <p class="vacio">Nadie te sigue todavía.</p>
+      <p class="vacio">{{ 'amistades.noFollowers' | translate }}</p>
     } @else {
       <ul class="lista">
         @for (u of seguidores(); track u.id) {
@@ -56,10 +56,10 @@
 
             @if (!u.siguiendo) {
               <button class="btn-followback" (click)="seguirDeVuelta(u.id)">
-                Seguir de vuelta
+                {{ 'amistades.followBack' | translate }}
               </button>
             } @else {
-              <span class="ya-sigues">Ya lo sigues</span>
+              <span class="ya-sigues">{{ 'amistades.alreadyFollow' | translate }}</span>
             }
 
           </li>
