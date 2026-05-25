@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 export class AdminMensajesService {
 
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/admin/panel`;
+  private apiUrl = `${environment.apiUrl}/admin/panel/mensajes`;
 
   // Obtener lista de chats
   getChats() {
