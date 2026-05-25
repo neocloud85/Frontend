@@ -125,7 +125,22 @@
 "admin.users.errorAdmin": "Could not update user",
 "admin.users.errorLoad": "Error loading users",
 "admin.users.errorSearch": "Error searching users",
-"admin.users.confirmDelete": "Are you sure you want to delete this user?"
+"admin.users.confirmDelete": "Are you sure you want to delete this user?",
+"admin.edit.title": "Edit user",
+"admin.edit.loading": "Loading user...",
+"admin.edit.name": "Name",
+"admin.edit.email": "Email",
+"admin.edit.type": "Type",
+"admin.edit.typeUser": "User",
+"admin.edit.typeAdmin": "Admin",
+"admin.edit.active": "Status",
+"admin.edit.activeYes": "Active",
+"admin.edit.activeNo": "Disabled",
+"admin.edit.save": "Save changes",
+"admin.edit.cancel": "Cancel",
+"admin.edit.saved": "User updated successfully",
+"admin.edit.errorLoad": "Error loading user",
+"admin.edit.errorSave": "Could not save changes"
 
 }
 

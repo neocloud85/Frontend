@@ -124,6 +124,21 @@
 "admin.users.errorAdmin": "No se pudo actualizar el usuario",
 "admin.users.errorLoad": "Error al cargar usuarios",
 "admin.users.errorSearch": "Error al buscar usuarios",
-"admin.users.confirmDelete": "¿Seguro que quieres borrar este usuario?"
+"admin.users.confirmDelete": "¿Seguro que quieres borrar este usuario?",
+"admin.edit.title": "Editar usuario",
+"admin.edit.loading": "Cargando usuario...",
+"admin.edit.name": "Nombre",
+"admin.edit.email": "Correo",
+"admin.edit.type": "Tipo",
+"admin.edit.typeUser": "Usuario",
+"admin.edit.typeAdmin": "Administrador",
+"admin.edit.active": "Estado",
+"admin.edit.activeYes": "Activo",
+"admin.edit.activeNo": "Desactivado",
+"admin.edit.save": "Guardar cambios",
+"admin.edit.cancel": "Cancelar",
+"admin.edit.saved": "Usuario actualizado correctamente",
+"admin.edit.errorLoad": "Error al cargar el usuario",
+"admin.edit.errorSave": "No se pudieron guardar los cambios"
 
 }
