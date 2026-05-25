@@ -66,7 +66,14 @@
     "seguidos.title": "Reviews from users you follow",
   "seguidos.loading": "Loading reviews...",
   "seguidos.empty": "There are no reviews from the users you follow.",
-  "seguidos.noComment": "No comment"
+  "seguidos.noComment": "No comment",
+    "buscarUsuarios.title": "Search users",
+  "buscarUsuarios.placeholder": "Type a name...",
+  "buscarUsuarios.loading": "Loading...",
+  "buscarUsuarios.noResults": "No users found.",
+  "buscarUsuarios.sendRequest": "Send request",
+  "buscarUsuarios.toastSuccess": "Request sent",
+  "buscarUsuarios.toastError": "Error sending request"
 
 }
 

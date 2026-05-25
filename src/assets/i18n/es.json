@@ -65,6 +65,12 @@
     "seguidos.title": "Reseñas de usuarios que sigues",
   "seguidos.loading": "Cargando reseñas...",
   "seguidos.empty": "No hay reseñas de los usuarios que sigues.",
-  "seguidos.noComment": "Sin comentario"
-  
+  "seguidos.noComment": "Sin comentario",
+    "buscarUsuarios.title": "Buscar usuarios",
+  "buscarUsuarios.placeholder": "Escribe un nombre...",
+  "buscarUsuarios.loading": "Cargando...",
+  "buscarUsuarios.noResults": "No se encontraron usuarios.",
+  "buscarUsuarios.sendRequest": "Enviar solicitud",
+  "buscarUsuarios.toastSuccess": "Solicitud enviada",
+  "buscarUsuarios.toastError": "Error al enviar"
 }
