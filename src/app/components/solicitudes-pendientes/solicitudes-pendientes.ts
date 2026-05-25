@@ -1,11 +1,23 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AmistadService } from '../../services/amistad';
+import { TranslatePipe } from '../../pipes/translate-pipe';
+import Swal from 'sweetalert2';
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2500,
+  timerProgressBar: true,
+  background: '#1e1e1e',
+  color: '#fff'
+});
 
 @Component({
   selector: 'app-solicitudes-pendientes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './solicitudes-pendientes.html',
   styleUrls: ['./solicitudes-pendientes.css']
 })
@@ -26,6 +38,7 @@ export class SolicitudesPendientesComponent {
     this.amistad.getSolicitudesPendientes().subscribe({
       next: (data) => {
         this.solicitudes.set(data);
+        this.amistad.solicitudesCount.set(data.length); // 🔥 actualiza contador global
         this.loading.set(false);
       },
       error: () => {
@@ -35,22 +48,36 @@ export class SolicitudesPendientesComponent {
   }
 
   aceptar(id: number) {
-    this.amistad.aceptarSolicitud(id).subscribe(() => {
-      this.solicitudes.update(list => {
-        const updated = list.filter(s => s.id !== id);
-        this.amistad.solicitudesCount.set(updated.length);
-        return updated;
-      });
+    this.amistad.aceptarSolicitud(id).subscribe({
+      next: () => {
+        this.solicitudes.update(list => {
+          const updated = list.filter(s => s.id !== id);
+          this.amistad.solicitudesCount.set(updated.length);
+          return updated;
+        });
+
+        Toast.fire({
+          icon: 'success',
+          title: 'solicitudes.accepted'
+        });
+      }
     });
   }
 
   rechazar(id: number) {
-    this.amistad.rechazarSolicitud(id).subscribe(() => {
-      this.solicitudes.update(list => {
-        const updated = list.filter(s => s.id !== id);
-        this.amistad.solicitudesCount.set(updated.length);
-        return updated;
-      });
+    this.amistad.rechazarSolicitud(id).subscribe({
+      next: () => {
+        this.solicitudes.update(list => {
+          const updated = list.filter(s => s.id !== id);
+          this.amistad.solicitudesCount.set(updated.length);
+          return updated;
+        });
+
+        Toast.fire({
+          icon: 'info',
+          title: 'solicitudes.rejected'
+        });
+      }
     });
   }
 }
