@@ -27,31 +27,41 @@
     <a routerLink="/dm">{{ 'menu.mensajes' | translate }}</a>
   }
 
-  <!-- DROPDOWN ADMIN -->
+  <!-- DROPDOWN ADMIN (por click) -->
   @if (isAdmin) {
-    <div class="dropdown">
-      <button class="dropdown-btn">
+    <div class="dropdown" [class.open]="adminOpen">
+      <button
+        type="button"
+        class="dropdown-btn"
+        (click)="adminOpen = !adminOpen">
         ⚙️ {{ 'menu.admin' | translate }}
       </button>
 
-      <div class="dropdown-content">
-        <a routerLink="/admin/usuarios">{{ 'menu.adminUsuarios' | translate }}</a>
-        <a routerLink="/admin/resenas">{{ 'menu.adminResenas' | translate }}</a>
-        <a routerLink="/admin/mensajes">{{ 'menu.adminMensajes' | translate }}</a>
-      </div>
+      @if (adminOpen) {
+        <div class="dropdown-content">
+          <a routerLink="/admin/usuarios">{{ 'menu.adminUsuarios' | translate }}</a>
+          <a routerLink="/admin/resenas">{{ 'menu.adminResenas' | translate }}</a>
+          <a routerLink="/admin/mensajes">{{ 'menu.adminMensajes' | translate }}</a>
+        </div>
+      }
     </div>
   }
 
   <!-- Selector de idioma -->
   <div class="idioma-selector">
-    🌐
+    <span class="idioma-icon">🌐</span>
+
     <button 
+      type="button"
+      class="idioma-btn"
       [class.active]="translate.lang() === 'es'" 
       (click)="changeLang('es')">
       ES
     </button>
 
     <button 
+      type="button"
+      class="idioma-btn"
       [class.active]="translate.lang() === 'en'" 
       (click)="changeLang('en')">
       EN
@@ -60,7 +70,9 @@
 
   <!-- Logout -->
   @if (isLoggedIn) {
-    <button (click)="logout()">{{ 'menu.logout' | translate }}</button>
+    <button type="button" class="logout-btn">
+      {{ 'menu.logout' | translate }}
+    </button>
   }
 
 </nav>

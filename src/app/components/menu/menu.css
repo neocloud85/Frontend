@@ -1,7 +1,7 @@
 /* ====== CONTENEDOR DEL MENÚ ====== */
 .menu {
   display: flex;
-  flex-wrap: wrap; /* evita desbordes */
+  flex-wrap: wrap;
   align-items: center;
   gap: 15px;
   padding: 12px 20px;
@@ -54,21 +54,22 @@
   padding: 8px 12px;
   border-radius: 6px;
   white-space: nowrap;
+  transition: background 0.25s, transform 0.15s;
 }
 
-.dropdown-btn:hover {
+.dropdown-btn:hover,
+.dropdown.open .dropdown-btn {
   background: rgba(255, 255, 255, 0.15);
 }
 
 .dropdown-content {
-  display: none;
   position: absolute;
-  top: 42px;
+  top: 40px;
   left: 0;
-  background: white;
-  min-width: 200px;
+  background: #111827; /* gris muy oscuro, no blanco */
   border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   overflow: hidden;
   z-index: 2000;
 }
@@ -76,18 +77,14 @@
 .dropdown-content a {
   display: block;
   padding: 10px 15px;
-  color: #333;
+  color: #e5e7eb;
   text-decoration: none;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .dropdown-content a:hover {
-  background: #f0f0f0;
-}
-
-/* Mostrar dropdown al pasar el ratón */
-.dropdown:hover .dropdown-content {
-  display: block;
+  background: #1f2937;
 }
 
 /* ====== SELECTOR DE IDIOMA ====== */
@@ -98,29 +95,34 @@
   margin-left: auto;
 }
 
-.idioma-selector button {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 6px 10px;
+.idioma-icon {
+  font-size: 16px;
+}
+
+.idioma-btn {
+  background: transparent;
+  color: #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 4px 10px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.25s, transform 0.15s;
+  font-size: 13px;
+  transition: background 0.25s, transform 0.15s, border-color 0.2s;
 }
 
-.idioma-selector button:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+.idioma-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
-.idioma-selector button.active {
+.idioma-btn.active {
   background: #2563eb;
   border-color: #1d4ed8;
 }
 
 /* ====== BOTÓN LOGOUT ====== */
-.menu button {
+.logout-btn {
   background: #dc2626;
   color: white;
   border: none;
@@ -131,7 +133,7 @@
   transition: background 0.25s, transform 0.15s;
 }
 
-.menu button:hover {
+.logout-btn:hover {
   background: #b91c1c;
   transform: translateY(-2px);
 }
@@ -143,7 +145,9 @@
     gap: 10px;
   }
 
-  .menu a, .menu button, .dropdown-btn {
+  .menu a,
+  .dropdown-btn,
+  .logout-btn {
     padding: 6px 10px;
     font-size: 14px;
   }
