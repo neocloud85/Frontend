@@ -140,7 +140,19 @@
 "admin.edit.cancel": "Cancel",
 "admin.edit.saved": "User updated successfully",
 "admin.edit.errorLoad": "Error loading user",
-"admin.edit.errorSave": "Could not save changes"
+"admin.edit.errorSave": "Could not save changes",
+"admin.reviews.title": "Review management",
+"admin.reviews.loading": "Loading reviews...",
+"admin.reviews.user": "User",
+"admin.reviews.book": "Book",
+"admin.reviews.rating": "Rating",
+"admin.reviews.text": "Text",
+"admin.reviews.actions": "Actions",
+"admin.reviews.delete": "Delete",
+"admin.reviews.confirmDelete": "Are you sure you want to delete this review?",
+"admin.reviews.deleted": "Review deleted",
+"admin.reviews.errorLoad": "Error loading reviews",
+"admin.reviews.errorDelete": "Could not delete the review"
 
 }
 

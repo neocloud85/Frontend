@@ -139,6 +139,18 @@
 "admin.edit.cancel": "Cancelar",
 "admin.edit.saved": "Usuario actualizado correctamente",
 "admin.edit.errorLoad": "Error al cargar el usuario",
-"admin.edit.errorSave": "No se pudieron guardar los cambios"
+"admin.edit.errorSave": "No se pudieron guardar los cambios",
+"admin.reviews.title": "Gestión de reseñas",
+"admin.reviews.loading": "Cargando reseñas...",
+"admin.reviews.user": "Usuario",
+"admin.reviews.book": "Libro",
+"admin.reviews.rating": "Puntuación",
+"admin.reviews.text": "Texto",
+"admin.reviews.actions": "Acciones",
+"admin.reviews.delete": "Borrar",
+"admin.reviews.confirmDelete": "¿Seguro que quieres borrar esta reseña?",
+"admin.reviews.deleted": "Reseña eliminada",
+"admin.reviews.errorLoad": "Error al cargar reseñas",
+"admin.reviews.errorDelete": "No se pudo borrar la reseña"
 
 }
