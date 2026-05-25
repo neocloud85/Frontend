@@ -1,6 +1,6 @@
 <div class="chat-container">
 
-  <div class="mensajes">
+  <div class="mensajes" #scrollArea>
     @for (m of mensajes(); track m.id) {
       <div class="mensaje" [class.mio]="m.remitente_id === user.id">
         {{ m.contenido }}
@@ -11,10 +11,13 @@
   <div class="input-area">
     <input 
       type="text" 
-      placeholder="Escribe un mensaje..."
+      [placeholder]="'dm.writeMessage' | translate"
       [(ngModel)]="nuevoMensaje"
+      (keyup.enter)="enviar()"
     >
-    <button (click)="enviar()">Enviar</button>
+    <button (click)="enviar()">
+      {{ 'dm.send' | translate }}
+    </button>
   </div>
 
 </div>
