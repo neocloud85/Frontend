@@ -80,7 +80,22 @@
 "solicitudes.loading": "Loading requests...",
 "solicitudes.empty": "You have no pending requests.",
 "solicitudes.accept": "Accept",
-"solicitudes.reject": "Reject"
+"solicitudes.reject": "Reject",
+"amistades.title": "My friends",
+"amistades.following": "Following",
+"amistades.followers": "Followers",
+"amistades.loading": "Loading data...",
+"amistades.youFollow": "Users you follow",
+"amistades.noFollowing": "You follow no one.",
+"amistades.followYou": "Users who follow you",
+"amistades.noFollowers": "No one follows you yet.",
+"amistades.message": "Message",
+"amistades.unfollow": "Unfollow",
+"amistades.followBack": "Follow back",
+"amistades.alreadyFollow": "You already follow them",
+"amistades.unfollowed": "You unfollowed this user",
+"amistades.followedBack": "You now follow this user",
+"amistades.errorFollowBack": "Could not follow back"
 
 }
 

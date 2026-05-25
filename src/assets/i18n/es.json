@@ -79,6 +79,21 @@
 "solicitudes.loading": "Cargando solicitudes...",
 "solicitudes.empty": "No tienes solicitudes pendientes.",
 "solicitudes.accept": "Aceptar",
-"solicitudes.reject": "Rechazar"
+"solicitudes.reject": "Rechazar",
+"amistades.title": "Mis amistades",
+"amistades.following": "Siguiendo",
+"amistades.followers": "Seguidores",
+"amistades.loading": "Cargando datos...",
+"amistades.youFollow": "Usuarios que sigues",
+"amistades.noFollowing": "No sigues a nadie.",
+"amistades.followYou": "Usuarios que te siguen",
+"amistades.noFollowers": "Nadie te sigue todavía.",
+"amistades.message": "Mensaje",
+"amistades.unfollow": "Dejar de seguir",
+"amistades.followBack": "Seguir de vuelta",
+"amistades.alreadyFollow": "Ya lo sigues",
+"amistades.unfollowed": "Has dejado de seguir a este usuario",
+"amistades.followedBack": "Ahora sigues a este usuario",
+"amistades.errorFollowBack": "No se pudo seguir de vuelta"
 
 }
