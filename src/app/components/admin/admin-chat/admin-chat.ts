@@ -27,6 +27,8 @@ export class AdminChatComponent {
 
   ngOnInit() {
     this.cargarMensajes();
+    console.log("CHAT ID:", this.chatId);
+
   }
 
   cargarMensajes() {
