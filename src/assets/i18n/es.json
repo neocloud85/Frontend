@@ -173,7 +173,13 @@
 "admin.messages.confirmDeleteMessage": "¿Seguro que quieres borrar este mensaje?",
 "admin.messages.deletedMessage": "Mensaje eliminado",
 "admin.messages.errorLoadChat": "Error cargando los mensajes",
-"admin.messages.errorDeleteMessage": "Error eliminando el mensaje"
+"admin.messages.errorDeleteMessage": "Error eliminando el mensaje",
+"footer.madeBy": "Proyecto desarrollado por Rafael Castelló Fernández — Ciclo DAW — IES Tarsiera",
+"footer.aboutUs": "Sobre nosotros",
 
+"about.title": "Sobre el proyecto",
+"about.description": "Este proyecto ha sido desarrollado como parte del Ciclo Formativo de Desarrollo de Aplicaciones Web del IES Tarsiera. Aquí puedes acceder al vídeo de presentación y a la presentación oficial.",
+"about.video": "Ver vídeo de presentación",
+"about.presentation": "Ver presentación"
 
 }

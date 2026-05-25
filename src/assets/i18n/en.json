@@ -174,7 +174,15 @@
 "admin.messages.confirmDeleteMessage": "Are you sure you want to delete this message?",
 "admin.messages.deletedMessage": "Message deleted",
 "admin.messages.errorLoadChat": "Error loading messages",
-"admin.messages.errorDeleteMessage": "Error deleting message"
+"admin.messages.errorDeleteMessage": "Error deleting message",
+"footer.madeBy": "Project developed by Rafael Castelló Fernández — Web Development Program — IES Tarsiera",
+"footer.aboutUs": "About us",
+
+"about.title": "About the project",
+"about.description": "This project was developed as part of the Web Development Program at IES Tarsiera. Here you can access the presentation video and the official project presentation.",
+"about.video": "Watch presentation video",
+"about.presentation": "View presentation"
+
 
 
 }
