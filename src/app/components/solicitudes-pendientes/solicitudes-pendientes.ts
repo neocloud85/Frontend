@@ -24,6 +24,7 @@ const Toast = Swal.mixin({
 export class SolicitudesPendientesComponent {
 
   private amistad = inject(AmistadService);
+  private t = inject(TranslatePipe); // 🔥 necesario para traducir Toast
 
   solicitudes = signal<any[]>([]);
   loading = signal(true);
@@ -38,7 +39,7 @@ export class SolicitudesPendientesComponent {
     this.amistad.getSolicitudesPendientes().subscribe({
       next: (data) => {
         this.solicitudes.set(data);
-        this.amistad.solicitudesCount.set(data.length); // 🔥 actualiza contador global
+        this.amistad.solicitudesCount.set(data.length);
         this.loading.set(false);
       },
       error: () => {
@@ -58,7 +59,7 @@ export class SolicitudesPendientesComponent {
 
         Toast.fire({
           icon: 'success',
-          title: 'solicitudes.accepted'
+          title: this.t.transform('solicitudes.accepted') // 🔥 traducido
         });
       }
     });
@@ -75,7 +76,7 @@ export class SolicitudesPendientesComponent {
 
         Toast.fire({
           icon: 'info',
-          title: 'solicitudes.rejected'
+          title: this.t.transform('solicitudes.rejected') // 🔥 traducido
         });
       }
     });
