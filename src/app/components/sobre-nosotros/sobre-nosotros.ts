@@ -12,7 +12,7 @@ import { TranslatePipe } from '../../pipes/translate-pipe';
 export class SobreNosotrosComponent {
 
   // Cambia estas URLs cuando tengas el vídeo y la presentación
-  videoUrl = 'https://www.youtube.com/watch?v=TU_VIDEO_AQUI';
+  videoUrl = 'https://youtu.be/H40jT9vXxTA';
   presentacionUrl = 'https://drive.google.com/TU_PRESENTACION_AQUI';
 
 }
