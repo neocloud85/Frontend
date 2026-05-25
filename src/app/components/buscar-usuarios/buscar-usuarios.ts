@@ -20,7 +20,8 @@ const Toast = Swal.mixin({
   selector: 'app-buscar-usuarios',
   standalone: true,
   imports: [CommonModule, FormsModule, TranslatePipe],
-  templateUrl: './buscar-usuarios.html'
+  templateUrl: './buscar-usuarios.html',
+    styleUrl: './buscar-usuarios.css',
 })
 export class BuscarUsuariosComponent {
 
