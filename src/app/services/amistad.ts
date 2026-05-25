@@ -59,4 +59,8 @@ export class AmistadService {
   followBack(id: string) {
     return this.http.post(`${this.api}/amistad/follow/${id}`, {});
   }
+  getAllUsers() {
+  return this.http.get<any[]>(`${this.api}/amistad/usuarios`);
+}
+
 }
