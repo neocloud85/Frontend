@@ -166,6 +166,14 @@
 "admin.messages.confirmDelete": "¿Seguro que quieres eliminar este chat?",
 "admin.messages.deleted": "Chat eliminado correctamente",
 "admin.messages.errorLoad": "Error cargando los chats",
-"admin.messages.errorDelete": "Error eliminando el chat"
+"admin.messages.errorDelete": "Error eliminando el chat",
+"admin.messages.chatTitle": "Chat entre usuarios",
+"admin.messages.loadingChat": "Cargando mensajes...",
+"admin.messages.deleteMessage": "Eliminar mensaje",
+"admin.messages.confirmDeleteMessage": "¿Seguro que quieres borrar este mensaje?",
+"admin.messages.deletedMessage": "Mensaje eliminado",
+"admin.messages.errorLoadChat": "Error cargando los mensajes",
+"admin.messages.errorDeleteMessage": "Error eliminando el mensaje"
+
 
 }

@@ -167,7 +167,14 @@
 "admin.messages.confirmDelete": "Are you sure you want to delete this chat?",
 "admin.messages.deleted": "Chat deleted successfully",
 "admin.messages.errorLoad": "Error loading chats",
-"admin.messages.errorDelete": "Error deleting chat"
+"admin.messages.errorDelete": "Error deleting chat",
+"admin.messages.chatTitle": "Chat between users",
+"admin.messages.loadingChat": "Loading messages...",
+"admin.messages.deleteMessage": "Delete message",
+"admin.messages.confirmDeleteMessage": "Are you sure you want to delete this message?",
+"admin.messages.deletedMessage": "Message deleted",
+"admin.messages.errorLoadChat": "Error loading messages",
+"admin.messages.errorDeleteMessage": "Error deleting message"
 
 
 }
