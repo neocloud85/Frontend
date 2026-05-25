@@ -1,18 +1,36 @@
 <div class="register-container">
-  <h2>Crear cuenta</h2>
+
+  <h2>{{ 'register.title' | translate }}</h2>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <input type="text" formControlName="nombre" placeholder="Nombre">
-    <input type="email" formControlName="correo" placeholder="Correo">
-    <input type="password" formControlName="contrasena" placeholder="Contraseña">
 
-    <button type="submit">Registrarse</button>
+    <input 
+      type="text" 
+      formControlName="nombre" 
+      placeholder="{{ 'register.namePlaceholder' | translate }}"
+    >
+
+    <input 
+      type="email" 
+      formControlName="correo" 
+      placeholder="{{ 'register.emailPlaceholder' | translate }}"
+    >
+
+    <input 
+      type="password" 
+      formControlName="contrasena" 
+      placeholder="{{ 'register.passwordPlaceholder' | translate }}"
+    >
+
+    <button type="submit">{{ 'register.submit' | translate }}</button>
   </form>
-<button type="button" class="back-btn" (click)="goBack()">Volver atrás</button>
 
-@if (errorMsg()) {
-  <p class="error">{{ errorMsg() }}</p>
-}
+  <button type="button" class="back-btn" (click)="goBack()">
+    {{ 'register.back' | translate }}
+  </button>
+
+  @if (errorMsg()) {
+    <p class="error">{{ errorMsg() }}</p>
+  }
 
 </div>
-
