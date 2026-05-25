@@ -102,7 +102,30 @@
 "dm.noMessages": "No messages yet",
 "dm.chatWith": "Chat with",
 "dm.writeMessage": "Write a message...",
-"dm.send": "Send"
+"dm.send": "Send",
+"admin.users.title": "User Management",
+"admin.users.searchPlaceholder": "Search by name or email...",
+"admin.users.name": "Name",
+"admin.users.email": "Email",
+"admin.users.type": "Type",
+"admin.users.active": "Active",
+"admin.users.actions": "Actions",
+"admin.users.yes": "Yes",
+"admin.users.no": "No",
+"admin.users.edit": "Edit",
+"admin.users.makeAdmin": "Make Admin",
+"admin.users.delete": "Delete",
+"admin.users.prev": "Previous",
+"admin.users.next": "Next",
+"admin.users.page": "Page",
+"admin.users.of": "of",
+"admin.users.deleted": "User deleted",
+"admin.users.updatedAdmin": "User updated to admin",
+"admin.users.errorDelete": "Could not delete user",
+"admin.users.errorAdmin": "Could not update user",
+"admin.users.errorLoad": "Error loading users",
+"admin.users.errorSearch": "Error searching users",
+"admin.users.confirmDelete": "Are you sure you want to delete this user?"
 
 }
 
