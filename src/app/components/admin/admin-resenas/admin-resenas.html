@@ -1,17 +1,17 @@
-<h2>Gestión de reseñas</h2>
+<h2>{{ 'admin.reviews.title' | translate }}</h2>
 
 @if (loading()) {
-  <p>Cargando reseñas...</p>
+  <p>{{ 'admin.reviews.loading' | translate }}</p>
 } @else {
 
 <table>
   <thead>
     <tr>
-      <th>Usuario</th>
-      <th>Libro</th>
-      <th>Puntuación</th>
-      <th>Texto</th>
-      <th>Acciones</th>
+      <th>{{ 'admin.reviews.user' | translate }}</th>
+      <th>{{ 'admin.reviews.book' | translate }}</th>
+      <th>{{ 'admin.reviews.rating' | translate }}</th>
+      <th>{{ 'admin.reviews.text' | translate }}</th>
+      <th>{{ 'admin.reviews.actions' | translate }}</th>
     </tr>
   </thead>
 
@@ -23,7 +23,9 @@
         <td>{{ r.puntuacion }}</td>
         <td>{{ r.texto }}</td>
         <td>
-          <button (click)="borrar(r.id)">Borrar</button>
+          <button class="btn borrar" (click)="borrar(r.id)">
+            {{ 'admin.reviews.delete' | translate }}
+          </button>
         </td>
       </tr>
     }
