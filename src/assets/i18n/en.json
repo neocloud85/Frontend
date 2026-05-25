@@ -29,6 +29,12 @@
 
   "register.namePlaceholder": "Name",
   "register.emailPlaceholder": "Email",
-  "register.passwordPlaceholder": "Password"
+  "register.passwordPlaceholder": "Password",
+    "landing.title": "Welcome to BookVerse",
+  "landing.subtitle": "Your favorite digital library",
+  "landing.popularBooks": "Most popular books",
+  "landing.loading": "Loading books...",
+  "landing.noBooks": "No books available",
+  "landing.explore": "Explore catalog"
 }
 
