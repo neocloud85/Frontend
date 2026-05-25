@@ -1,18 +1,36 @@
 <div class="app-landing">
-<!-- <nav class="navbar">
-  <div class="logo">BookVerse</div>
 
-  <ul class="menu">
-    <li><a routerLink="/">Inicio</a></li>
-    <li><a routerLink="/sobre">Sobre nosotros</a></li>
-    <li><a routerLink="/login">Login</a></li>
-    <li><a routerLink="/register">Registrarse</a></li>
-  </ul>
-</nav> -->
+  <header class="hero">
+    <h1>{{ 'landing.title' | translate }}</h1>
+    <p>{{ 'landing.subtitle' | translate }}</p>
+  </header>
 
-<header class="hero">
-  <h1>Bienvenido a BookVerse</h1>
-  <p>Tu biblioteca digital favorita</p>
-  <button routerLink="/catalogo">Explorar libros</button>
-</header>
+  <section class="popular-section">
+    <h2>{{ 'landing.popularBooks' | translate }}</h2>
+
+    @if (loadingTop()) {
+      <p>{{ 'landing.loading' | translate }}</p>
+    }
+
+    <div class="books-grid">
+      @for (book of topLibros(); track book.id) {
+        <div class="book-card" routerLink="/book/{{ book.id }}">
+          <img [src]="book.portada" alt="Portada">
+          <h3>{{ book.titulo }}</h3>
+          <p>⭐ {{ book.nota_media }}</p>
+        </div>
+      }
+
+      @empty {
+        <p>{{ 'landing.noBooks' | translate }}</p>
+      }
+    </div>
+  </section>
+
+  <div class="explore-btn">
+    <button routerLink="/catalogo">
+      {{ 'landing.explore' | translate }}
+    </button>
+  </div>
+
 </div>
