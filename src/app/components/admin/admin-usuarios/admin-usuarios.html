@@ -1,8 +1,8 @@
-<h1>Gestión de Usuarios</h1>
+<h1>{{ 'admin.users.title' | translate }}</h1>
 
 <input 
   type="text" 
-  placeholder="Buscar por nombre o correo..."
+  [placeholder]="'admin.users.searchPlaceholder' | translate"
   [(ngModel)]="searchTerm"
   (input)="buscar()"
 >
@@ -11,11 +11,11 @@
   <table class="tabla-usuarios">
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Correo</th>
-        <th>Tipo</th>
-        <th>Activo</th>
-        <th>Acciones</th>
+        <th>{{ 'admin.users.name' | translate }}</th>
+        <th>{{ 'admin.users.email' | translate }}</th>
+        <th>{{ 'admin.users.type' | translate }}</th>
+        <th>{{ 'admin.users.active' | translate }}</th>
+        <th>{{ 'admin.users.actions' | translate }}</th>
       </tr>
     </thead>
 
@@ -25,16 +25,29 @@
           <td>{{ u.nombre }}</td>
           <td>{{ u.correo }}</td>
           <td>{{ u.tipo }}</td>
-          <td>{{ u.activo ? 'Sí' : 'No' }}</td>
+          <td>{{ u.activo ? ('admin.users.yes' | translate) : ('admin.users.no' | translate) }}</td>
 
-          <td>
-            <button routerLink="/admin/usuarios/editar/{{ u.id }}">Editar</button>
+          <td class="acciones">
 
+            <!-- EDITAR -->
+            <button class="btn editar" routerLink="/admin/usuarios/editar/{{ u.id }}">
+              {{ 'admin.users.edit' | translate }}
+            </button>
+
+            <!-- HACER ADMIN -->
             @if (u.tipo !== 'admin') {
-              <button (click)="hacerAdmin(u.id)">Hacer Admin</button>
+              <button class="btn admin" (click)="hacerAdmin(u.id)">
+                {{ 'admin.users.makeAdmin' | translate }}
+              </button>
+            } @else {
+              <span class="placeholder"></span>
             }
 
-            <button (click)="borrar(u.id)">Borrar</button>
+            <!-- BORRAR -->
+            <button class="btn borrar" (click)="borrar(u.id)">
+              {{ 'admin.users.delete' | translate }}
+            </button>
+
           </td>
         </tr>
       }
@@ -47,15 +60,15 @@
     <button 
       (click)="page.set(page()-1); cargarUsuarios()" 
       [disabled]="page() === 1">
-      Anterior
+      {{ 'admin.users.prev' | translate }}
     </button>
 
-    <span>Página {{ page() }} de {{ totalPages() }}</span>
+    <span>{{ 'admin.users.page' | translate }} {{ page() }} {{ 'admin.users.of' | translate }} {{ totalPages() }}</span>
 
     <button 
       (click)="page.set(page()+1); cargarUsuarios()" 
       [disabled]="page() === totalPages()">
-      Siguiente
+      {{ 'admin.users.next' | translate }}
     </button>
   </div>
 }
