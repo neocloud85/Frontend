@@ -1,11 +1,13 @@
 import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Books } from '../../services/books';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-resenas-seguidos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './other-reviews.component.html',
   styleUrl: './other-reviews.css',
 })
@@ -18,25 +20,17 @@ export class ResenasSeguidosComponent {
   private cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
-    console.log("COMPONENTE MONTADO");
     this.cargarResenas();
   }
 
   cargarResenas() {
-    console.log("LLAMANDO A getResenasSeguidos()");
-
     this.books.getResenasSeguidos().subscribe({
       next: (data) => {
-        console.log("DATA RECIBIDA:", data);
-
-        this.reviews = [...data];   
+        this.reviews = [...data];
         this.loading = false;
-
-        this.cdr.detectChanges();   
+        this.cdr.detectChanges();
       },
-      error: (err) => {
-        console.log("ERROR:", err);
-
+      error: () => {
         this.loading = false;
         this.cdr.detectChanges();
       }
