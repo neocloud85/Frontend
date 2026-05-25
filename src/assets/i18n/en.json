@@ -154,7 +154,21 @@
 "admin.reviews.errorLoad": "Error loading reviews",
 "admin.reviews.errorDelete": "Could not delete the review",
 "menu.admin": "Administration",
-"menu.adminMensajes": "Messages (Admin)"
+"menu.adminMensajes": "Messages (Admin)",
+"admin.messages.title": "Message Management",
+"admin.messages.loading": "Loading chats...",
+"admin.messages.userA": "User A",
+"admin.messages.userB": "User B",
+"admin.messages.lastMessage": "Last message",
+"admin.messages.date": "Date",
+"admin.messages.actions": "Actions",
+"admin.messages.viewChat": "View chat",
+"admin.messages.deleteChat": "Delete chat",
+"admin.messages.confirmDelete": "Are you sure you want to delete this chat?",
+"admin.messages.deleted": "Chat deleted successfully",
+"admin.messages.errorLoad": "Error loading chats",
+"admin.messages.errorDelete": "Error deleting chat"
+
 
 }
 

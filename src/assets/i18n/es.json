@@ -153,6 +153,19 @@
 "admin.reviews.errorLoad": "Error al cargar reseñas",
 "admin.reviews.errorDelete": "No se pudo borrar la reseña",
 "menu.admin": "Administración",
-"menu.adminMensajes": "Mensajes (Admin)"
+"menu.adminMensajes": "Mensajes (Admin)",
+"admin.messages.title": "Gestión de mensajes",
+"admin.messages.loading": "Cargando chats...",
+"admin.messages.userA": "Usuario A",
+"admin.messages.userB": "Usuario B",
+"admin.messages.lastMessage": "Último mensaje",
+"admin.messages.date": "Fecha",
+"admin.messages.actions": "Acciones",
+"admin.messages.viewChat": "Ver chat",
+"admin.messages.deleteChat": "Eliminar chat",
+"admin.messages.confirmDelete": "¿Seguro que quieres eliminar este chat?",
+"admin.messages.deleted": "Chat eliminado correctamente",
+"admin.messages.errorLoad": "Error cargando los chats",
+"admin.messages.errorDelete": "Error eliminando el chat"
 
 }
