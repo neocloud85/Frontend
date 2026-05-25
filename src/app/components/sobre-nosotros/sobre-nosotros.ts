@@ -13,6 +13,6 @@ export class SobreNosotrosComponent {
 
   // Cambia estas URLs cuando tengas el vídeo y la presentación
   videoUrl = 'https://youtu.be/H40jT9vXxTA';
-  presentacionUrl = 'https://drive.google.com/TU_PRESENTACION_AQUI';
+  presentacionUrl = 'https://canva.link/cvoz0ohy2ordalt';
 
 }
