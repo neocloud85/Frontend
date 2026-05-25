@@ -95,7 +95,11 @@
 "amistades.alreadyFollow": "You already follow them",
 "amistades.unfollowed": "You unfollowed this user",
 "amistades.followedBack": "You now follow this user",
-"amistades.errorFollowBack": "Could not follow back"
+"amistades.errorFollowBack": "Could not follow back",
+"dm.title": "Messages",
+"dm.loading": "Loading chats...",
+"dm.empty": "You have no chats yet.",
+"dm.noMessages": "No messages yet"
 
 }
 
