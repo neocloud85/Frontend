@@ -1,0 +1,114 @@
+/* ============================
+   TÍTULO
+============================ */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ============================
+   INPUT DE BÚSQUEDA
+============================ */
+.input {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto 20px auto;
+  display: block;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+  outline: none;
+}
+
+/* ============================
+   LISTA DE RESULTADOS
+============================ */
+.resultados {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================
+   TARJETA DE USUARIO
+============================ */
+.usuario-card {
+  background: #fff;
+  padding: 14px 18px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform .15s, box-shadow .15s;
+}
+
+.usuario-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+.usuario-card .info strong {
+  font-size: 1.1rem;
+}
+
+/* ============================
+   BOTÓN DE SOLICITUD
+============================ */
+.usuario-card button {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+
+.usuario-card button:hover {
+  background: #3a78c2;
+  transform: scale(1.05);
+}
+
+/* ============================
+   MENSAJES
+============================ */
+p {
+  text-align: center;
+  margin-top: 10px;
+  color: #555;
+}
+
+.loading {
+  font-style: italic;
+}
+
+.empty {
+  color: #888;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 600px) {
+  .usuario-card {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .usuario-card button {
+    width: 100%;
+  }
+}

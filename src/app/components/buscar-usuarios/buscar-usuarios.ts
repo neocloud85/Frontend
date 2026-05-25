@@ -43,8 +43,10 @@ export class BuscarUsuariosComponent {
 
           if (texto.length === 0) {
             this.resultados = [...this.todosUsuarios];
-            return of([]);
+            this.loading = false;
+            return of(null); // <-- no pisa resultados
           }
+
 
           if (texto.length < 2) {
             this.resultados = [];
@@ -56,11 +58,12 @@ export class BuscarUsuariosComponent {
         })
       )
       .subscribe((data: any) => {
-        if (this.query.trim().length >= 2) {
+        if (data && this.query.trim().length >= 2) {
           this.resultados = data || [];
         }
         this.loading = false;
       });
+
   }
 
   ngOnInit() {
