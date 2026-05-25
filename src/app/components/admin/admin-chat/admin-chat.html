@@ -10,7 +10,7 @@
     <div class="mensaje">
       <div class="autor">{{ m.remitente_nombre }}</div>
       <div class="contenido">{{ m.contenido }}</div>
-      <div class="fecha">{{ m.fecha | date:'short' }}</div>
+      <div class="fecha">{{ m.fecha_envio | date:'short' }}</div>
 
       <button class="btn borrar" (click)="borrarMensaje(m.id)">
         {{ 'admin.messages.deleteMessage' | translate }}
