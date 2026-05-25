@@ -5,11 +5,13 @@ import { AdminService } from '../../../services/admin';
 import { FormsModule } from '@angular/forms';
 import { Usuario } from '../../../interfaces/usuario.model';
 import { ToastService } from '../../../services/toast';
+import { TranslateService } from '../../../services/translate';
+import { TranslatePipe } from '../../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-editar-usuario',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './editar-usuario.html',
   styleUrls: ['./editar-usuario.css']
 })
@@ -19,6 +21,7 @@ export class EditarUsuarioComponent {
   private router = inject(Router);
   private admin = inject(AdminService);
   private toast = inject(ToastService);
+  private translate = inject(TranslateService);
 
   usuario = signal<Usuario | null>(null);
 
@@ -54,7 +57,7 @@ export class EditarUsuarioComponent {
       },
       error: () => {
         this.loading.set(false);
-        this.toast.error('Error al cargar el usuario');
+        this.toast.error(this.translate.t('admin.edit.errorLoad'));
       }
     });
   }
@@ -64,11 +67,11 @@ export class EditarUsuarioComponent {
 
     this.admin.actualizarUsuario(this.usuario()!.id, this.formData).subscribe({
       next: () => {
-        this.toast.success('Usuario actualizado correctamente');
+        this.toast.success(this.translate.t('admin.edit.saved'));
         this.router.navigate(['/admin/usuarios']);
       },
       error: () => {
-        this.toast.error('No se pudieron guardar los cambios');
+        this.toast.error(this.translate.t('admin.edit.errorSave'));
       }
     });
   }
