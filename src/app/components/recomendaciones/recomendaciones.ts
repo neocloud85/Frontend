@@ -1,10 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { Books } from '../../services/books';
-import { RouterLink } from '@angular/router'
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-recomendaciones',
-  imports: [RouterLink],
+  standalone: true,
+  imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './recomendaciones.html',
   styleUrl: './recomendaciones.css',
 })

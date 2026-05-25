@@ -1,19 +1,18 @@
 <div class="recomendados-container">
 
-  <h1>Recomendaciones para ti</h1>
+  <h1>{{ 'recomendaciones.title' | translate }}</h1>
 
   @if (loading()) {
-    <p class="loading">Cargando recomendaciones...</p>
+    <p class="loading">{{ 'recomendaciones.loading' | translate }}</p>
   }
 
   @if (error()) {
-    <p class="error">{{ error() }}</p>
+    <p class="error">{{ 'recomendaciones.error' | translate }}</p>
   }
 
   @if (!loading() && recomendaciones().length === 0 && !error()) {
     <p class="empty">
-      Aún no hay recomendaciones.  
-      Reseña algunos libros con puntuación alta para obtener sugerencias.
+      {{ 'recomendaciones.empty' | translate }}
     </p>
   }
 
@@ -27,7 +26,7 @@
           <p class="autor">{{ libro.autor }}</p>
 
           <a [routerLink]="['/book', libro.id]" class="btn">
-            Ver detalles
+            {{ 'recomendaciones.details' | translate }}
           </a>
         </div>
       }
@@ -35,4 +34,3 @@
   }
 
 </div>
-
