@@ -5,7 +5,7 @@
   [placeholder]="'admin.users.searchPlaceholder' | translate"
   [(ngModel)]="searchTerm"
   (input)="buscar()"
->
+/>
 
 @if (!loading()) {
   <table class="tabla-usuarios">
@@ -63,7 +63,10 @@
       {{ 'admin.users.prev' | translate }}
     </button>
 
-    <span>{{ 'admin.users.page' | translate }} {{ page() }} {{ 'admin.users.of' | translate }} {{ totalPages() }}</span>
+    <span>
+      {{ 'admin.users.page' | translate }} {{ page() }} 
+      {{ 'admin.users.of' | translate }} {{ totalPages() }}
+    </span>
 
     <button 
       (click)="page.set(page()+1); cargarUsuarios()" 

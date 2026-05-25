@@ -32,33 +32,57 @@ input {
   background: #f0f0f0;
 }
 
-button {
+/* --- BOTONES --- */
+
+.acciones {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Botón base */
+.btn {
   padding: 8px 12px;
-  margin-right: 8px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
+  color: white;
+  transition: 0.2s;
 }
 
-button:hover {
-  opacity: 0.85;
-}
-
-button:nth-child(1) {
+/* Editar = azul */
+.btn.editar {
   background: #007bff;
-  color: white;
+}
+.btn.editar:hover {
+  background: #0069d9;
 }
 
-button:nth-child(2) {
+/* Hacer Admin = verde */
+.btn.admin {
   background: #28a745;
-  color: white;
+}
+.btn.admin:hover {
+  background: #218838;
 }
 
-button:nth-child(3) {
+/* Borrar = rojo */
+.btn.borrar {
   background: #dc3545;
-  color: white;
 }
+.btn.borrar:hover {
+  background: #c82333;
+}
+
+/* Placeholder para mantener el hueco del botón verde */
+.placeholder {
+  width: 100px;   /* igual que un botón */
+  height: 34px;   /* igual que un botón */
+  display: inline-block;
+}
+
+/* --- Paginación --- */
 
 .paginacion {
   margin-top: 20px;
