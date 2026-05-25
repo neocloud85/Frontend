@@ -56,6 +56,11 @@
     "myReviews.title": "Mis reseñas publicadas",
   "myReviews.loading": "Cargando reseñas...",
   "myReviews.noComment": "Sin comentario",
-  "myReviews.empty": "Todavía no has publicado ninguna reseña."
+  "myReviews.empty": "Todavía no has publicado ninguna reseña.",
+    "recomendaciones.title": "Recomendaciones para ti",
+  "recomendaciones.loading": "Cargando recomendaciones...",
+  "recomendaciones.error": "No se pudieron cargar las recomendaciones",
+  "recomendaciones.empty": "Aún no hay recomendaciones. Reseña algunos libros con puntuación alta para obtener sugerencias.",
+  "recomendaciones.details": "Ver detalles"
   
 }

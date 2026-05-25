@@ -57,6 +57,12 @@
     "myReviews.title": "My published reviews",
   "myReviews.loading": "Loading reviews...",
   "myReviews.noComment": "No comment",
-  "myReviews.empty": "You haven't published any reviews yet."
+  "myReviews.empty": "You haven't published any reviews yet.",
+    "recomendaciones.title": "Recommendations for you",
+  "recomendaciones.loading": "Loading recommendations...",
+  "recomendaciones.error": "Recommendations could not be loaded",
+  "recomendaciones.empty": "There are no recommendations yet. Review some books with high ratings to get suggestions.",
+  "recomendaciones.details": "View details"
+
 }
 
