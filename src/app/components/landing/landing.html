@@ -17,7 +17,7 @@
         <div class="book-card" routerLink="/book/{{ book.id }}">
           <img [src]="book.portada" alt="Portada">
           <h3>{{ book.titulo }}</h3>
-          <p>⭐ {{ book.nota_media }}</p>
+          <p>⭐ {{ book.nota_media | number:'1.1-2' }}</p>
         </div>
       }
 
