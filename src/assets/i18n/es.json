@@ -11,5 +11,15 @@
   "menu.mensajes": "Mensajes",
   "menu.adminUsuarios": "Administrar usuarios",
   "menu.adminResenas": "Administrar reseñas",
-  "menu.logout": "Cerrar sesión"
+  "menu.logout": "Cerrar sesión",
+  "login.title": "Iniciar sesión",
+  "login.email": "Correo electrónico",
+  "login.password": "Contraseña",
+  "login.submit": "Entrar",
+
+  "login.emailPlaceholder": "Introduce tu correo",
+  "login.passwordPlaceholder": "Introduce tu contraseña",
+
+  "login.noAccount": "¿No tienes cuenta?",
+  "login.registerHere": "Regístrate aquí"
 }

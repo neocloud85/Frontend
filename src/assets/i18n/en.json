@@ -11,5 +11,17 @@
   "menu.mensajes": "Messages",
   "menu.adminUsuarios": "Manage users",
   "menu.adminResenas": "Manage reviews",
-  "menu.logout": "Log out"
+  "menu.logout": "Log out",
+  
+  "login.title": "Login",
+  "login.email": "Email",
+  "login.password": "Password",
+  "login.submit": "Sign in",
+
+  "login.emailPlaceholder": "Enter your email",
+  "login.passwordPlaceholder": "Enter your password",
+
+  "login.noAccount": "Don't have an account?",
+  "login.registerHere": "Register here"
 }
+
