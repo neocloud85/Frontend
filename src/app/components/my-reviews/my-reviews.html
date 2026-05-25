@@ -1,7 +1,7 @@
-<h1>Mis reseñas publicadas</h1>
+<h1>{{ 'myReviews.title' | translate }}</h1>
 
 @if (loading()) {
-  <p class="loading">Cargando reseñas...</p>
+  <p class="loading">{{ 'myReviews.loading' | translate }}</p>
 }
 
 @for (r of reviews(); track r.id) {
@@ -18,11 +18,11 @@
     }
 
     @if (!r.texto) {
-      <p class="no-text">Sin comentario</p>
+      <p class="no-text">{{ 'myReviews.noComment' | translate }}</p>
     }
   </div>
 }
 
 @if (!loading() && reviews().length === 0) {
-  <p class="empty">Todavía no has publicado ninguna reseña.</p>
+  <p class="empty">{{ 'myReviews.empty' | translate }}</p>
 }

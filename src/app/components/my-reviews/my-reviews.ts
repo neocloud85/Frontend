@@ -1,16 +1,18 @@
-import { Component, inject, signal} from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Books } from '../../services/books';
-
+import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-my-reviews',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './my-reviews.html',
   styleUrl: './my-reviews.css',
 })
 export class MyReviews {
 
-   private books = inject(Books);
+  private books = inject(Books);
 
   reviews = signal<any[]>([]);
   loading = signal(true);
