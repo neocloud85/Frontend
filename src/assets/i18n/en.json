@@ -73,7 +73,8 @@
   "buscarUsuarios.noResults": "No users found.",
   "buscarUsuarios.sendRequest": "Send request",
   "buscarUsuarios.toastSuccess": "Request sent",
-  "buscarUsuarios.toastError": "Error sending request"
-
+  "buscarUsuarios.toastError": "Error sending request",
+  "buscarUsuarios.following": "Following",
+"buscarUsuarios.pending": "Pending"
 }
 
