@@ -1,0 +1,15 @@
+{
+  "menu.inicio": "Inicio",
+  "menu.login": "Login",
+  "menu.register": "Registro",
+  "menu.misResenas": "Mis reseñas publicadas",
+  "menu.recomendados": "Recomendaciones para ti",
+  "menu.resenasUsuarios": "Reseñas",
+  "menu.buscarUsuarios": "Buscar usuarios",
+  "menu.solicitudes": "Solicitudes",
+  "menu.amistades": "Amistades",
+  "menu.mensajes": "Mensajes",
+  "menu.adminUsuarios": "Administrar usuarios",
+  "menu.adminResenas": "Administrar reseñas",
+  "menu.logout": "Cerrar sesión"
+}

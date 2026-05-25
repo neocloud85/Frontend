@@ -1,0 +1,15 @@
+{
+  "menu.inicio": "Home",
+  "menu.login": "Login",
+  "menu.register": "Register",
+  "menu.misResenas": "My published reviews",
+  "menu.recomendados": "Recommended for you",
+  "menu.resenasUsuarios": "Reviews",
+  "menu.buscarUsuarios": "Search users",
+  "menu.solicitudes": "Requests",
+  "menu.amistades": "Friends",
+  "menu.mensajes": "Messages",
+  "menu.adminUsuarios": "Manage users",
+  "menu.adminResenas": "Manage reviews",
+  "menu.logout": "Log out"
+}
