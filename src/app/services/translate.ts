@@ -11,7 +11,7 @@ export class TranslateService {
   }
 
   async loadLanguage(lang: string) {
-    const data = await fetch(`/assets/i18n/${lang}.json`).then(r => r.json());
+    const data = await fetch(`assets/i18n/${lang}.json`).then(r => r.json());
     this.dictionary.set(data);
   }
 
