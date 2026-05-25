@@ -35,6 +35,24 @@
   "landing.popularBooks": "Most popular books",
   "landing.loading": "Loading books...",
   "landing.noBooks": "No books available",
-  "landing.explore": "Explore catalog"
+  "landing.explore": "Explore catalog",
+    "dashboard.title": "Book catalog",
+  "dashboard.searchPlaceholder": "Search book by title...",
+  "dashboard.searchBtn": "Search",
+
+  "dashboard.topBooksTitle": "⭐ Top rated books",
+  "dashboard.loadingTop": "Loading top books...",
+  "dashboard.noTopBooks": "Not enough reviews to show rankings.",
+  "dashboard.reviews": "reviews",
+
+  "dashboard.catalogTitle": "Catalog",
+  "dashboard.noBooksFound": "No books found.",
+
+  "dashboard.first": "First",
+  "dashboard.prev": "Previous",
+  "dashboard.next": "Next",
+  "dashboard.last": "Last",
+  "dashboard.page": "Page",
+  "dashboard.of": "of"
 }
 
