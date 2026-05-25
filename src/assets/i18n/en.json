@@ -75,6 +75,12 @@
   "buscarUsuarios.toastSuccess": "Request sent",
   "buscarUsuarios.toastError": "Error sending request",
   "buscarUsuarios.following": "Following",
-"buscarUsuarios.pending": "Pending"
+"buscarUsuarios.pending": "Pending",
+"solicitudes.title": "Friend requests",
+"solicitudes.loading": "Loading requests...",
+"solicitudes.empty": "You have no pending requests.",
+"solicitudes.accept": "Accept",
+"solicitudes.reject": "Reject"
+
 }
 
