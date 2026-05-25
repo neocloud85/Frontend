@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AmistadService } from '../../services/amistad';
 import { TranslatePipe } from '../../pipes/translate-pipe';
+import { TranslateService } from '../../services/translate';
 import Swal from 'sweetalert2';
 
 const Toast = Swal.mixin({
@@ -24,7 +25,7 @@ const Toast = Swal.mixin({
 export class SolicitudesPendientesComponent {
 
   private amistad = inject(AmistadService);
-  private t = inject(TranslatePipe); // 🔥 necesario para traducir Toast
+  private translate = inject(TranslateService); // 🔥 correcto
 
   solicitudes = signal<any[]>([]);
   loading = signal(true);
@@ -59,7 +60,7 @@ export class SolicitudesPendientesComponent {
 
         Toast.fire({
           icon: 'success',
-          title: this.t.transform('solicitudes.accepted') // 🔥 traducido
+          title: this.translate.t('solicitudes.accepted') // 🔥 ahora sí funciona
         });
       }
     });
@@ -76,7 +77,7 @@ export class SolicitudesPendientesComponent {
 
         Toast.fire({
           icon: 'info',
-          title: this.t.transform('solicitudes.rejected') // 🔥 traducido
+          title: this.translate.t('solicitudes.rejected') // 🔥 funciona
         });
       }
     });
