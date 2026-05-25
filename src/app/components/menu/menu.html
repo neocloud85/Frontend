@@ -70,9 +70,10 @@
 
   <!-- Logout -->
   @if (isLoggedIn) {
-    <button type="button" class="logout-btn">
-      {{ 'menu.logout' | translate }}
-    </button>
+   <button type="button" class="logout-btn" (click)="logout()">
+  {{ 'menu.logout' | translate }}
+</button>
+
   }
 
 </nav>
