@@ -74,5 +74,11 @@
   "buscarUsuarios.toastSuccess": "Solicitud enviada",
   "buscarUsuarios.toastError": "Error al enviar",
   "buscarUsuarios.following": "Siguiendo",
-"buscarUsuarios.pending": "Pendiente"
+"buscarUsuarios.pending": "Pendiente",
+"solicitudes.title": "Solicitudes de amistad",
+"solicitudes.loading": "Cargando solicitudes...",
+"solicitudes.empty": "No tienes solicitudes pendientes.",
+"solicitudes.accept": "Aceptar",
+"solicitudes.reject": "Rechazar"
+
 }
