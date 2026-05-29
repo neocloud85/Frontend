@@ -1,5 +1,5 @@
 /* =====================================================
-   MENU / NAVBAR — Editorial literaria
+   MENU / NAVBAR — con página activa resaltada
    ===================================================== */
 
 .menu {
@@ -13,9 +13,9 @@
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 20px rgba(28,23,18,0.3);
+  flex-shrink: 0;
 }
 
-/* Logo / marca implícita a la izquierda */
 .menu::before {
   content: '📚';
   font-size: 20px;
@@ -25,16 +25,17 @@
 
 /* --- ENLACES --- */
 .menu a {
-  color: var(--parchment);
+  color: rgba(247,243,237,0.65);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 6px 14px;
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
   white-space: nowrap;
   transition: color var(--transition), background var(--transition);
+  position: relative;
 }
 
 .menu a:hover {
@@ -42,8 +43,22 @@
   background: rgba(255,255,255,0.08);
 }
 
-.menu a.active {
-  color: var(--amber-light);
+/* PÁGINA ACTIVA — clase que Angular añade con routerLinkActive */
+.menu a.active-link {
+  color: var(--white) !important;
+  background: rgba(196,120,58,0.2) !important;
+}
+
+/* Indicador inferior en el enlace activo */
+.menu a.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: var(--amber);
+  border-radius: 2px;
 }
 
 /* --- BADGE --- */
@@ -71,13 +86,13 @@
 .dropdown-btn {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.18);
-  color: var(--parchment);
-  font-size: 0.85rem;
+  color: rgba(247,243,237,0.65);
+  font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 6px 14px;
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
   white-space: nowrap;
   transition: color var(--transition), background var(--transition), border-color var(--transition);
@@ -124,6 +139,11 @@
   color: var(--white);
 }
 
+.dropdown-content a.active-link {
+  color: var(--amber-light) !important;
+  background: rgba(196,120,58,0.15) !important;
+}
+
 /* --- SELECTOR DE IDIOMA --- */
 .idioma-selector {
   display: flex;
@@ -133,14 +153,11 @@
   flex-shrink: 0;
 }
 
-.idioma-icon {
-  font-size: 15px;
-  opacity: 0.7;
-}
+.idioma-icon { font-size: 15px; opacity: 0.6; }
 
 .idioma-btn {
   background: transparent;
-  color: var(--parchment);
+  color: rgba(247,243,237,0.65);
   border: 1px solid rgba(255,255,255,0.2);
   padding: 3px 10px;
   border-radius: var(--radius-sm);
@@ -167,12 +184,12 @@
 /* --- BOTÓN LOGOUT --- */
 .logout-btn {
   background: transparent;
-  color: var(--parchment);
+  color: rgba(247,243,237,0.65);
   border: 1px solid rgba(255,255,255,0.2);
   padding: 6px 14px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -182,7 +199,7 @@
 }
 
 .logout-btn:hover {
-  background: rgba(196, 120, 58, 0.25);
+  background: rgba(196,120,58,0.2);
   border-color: var(--amber);
   color: var(--amber-light);
 }
@@ -193,19 +210,17 @@
     padding: 0 16px;
     flex-wrap: wrap;
     height: auto;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    gap: 6px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 4px;
   }
 
-  .menu::before {
-    display: none;
-  }
+  .menu::before { display: none; }
 
   .menu a,
   .dropdown-btn,
   .logout-btn {
-    padding: 5px 10px;
-    font-size: 0.8rem;
+    padding: 5px 9px;
+    font-size: 0.75rem;
   }
 }

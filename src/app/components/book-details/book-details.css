@@ -1,63 +1,209 @@
+/* =====================================================
+   BOOK DETAILS — Editorial literaria
+   ===================================================== */
+
+.book-details-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- ESTADOS --- */
+.loading {
+  text-align: center;
+  padding: 80px 24px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-muted);
+}
+
+.error {
+  padding: 16px 20px;
+  background: #FEF2F0;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm);
+  color: #B91C1C;
+  font-size: 0.9rem;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
 .details-container {
   display: flex;
-  gap: 20px;
-  padding: 20px;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* --- PORTADA --- */
+.cover-container {
+  flex-shrink: 0;
+  width: 240px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--cream-dark);
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 88px;
 }
 
 .cover {
-  width: 200px;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
+/* --- INFO DEL LIBRO --- */
 .info {
-  max-width: 600px;
+  flex: 1;
+  min-width: 0;
 }
 
-.description {
-  margin-top: 20px;
+.info h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.info h3 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--amber);
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+.info > p {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
   line-height: 1.5;
 }
 
-.back-btn {
-  display: inline-block;
+.info > p strong {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* --- DESCRIPCIÓN --- */
+.description {
   margin-top: 20px;
-  padding: 10px 16px;
-  background: #2196f3;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-}
-/* CONTENEDOR FIJO PARA LA PORTADA */
-.cover-container {
-  width: 260px;
-  height: 360px;
-  background: #f3f3f3;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  padding-top: 20px;
+  border-top: 1px solid var(--cream-dark);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
 }
 
-/* LA IMAGEN */
-.cover {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* evita deformación */
-  border-radius: 8px;
-}
-
+/* --- BOTÓN LEER MÁS / MENOS --- */
 .toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   margin-top: 10px;
   background: none;
   border: none;
-  color: #1976d2;
-  font-size: 14px;
+  color: var(--amber);
+  font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
   padding: 0;
+  font-family: var(--font-body);
+  transition: color var(--transition);
+  letter-spacing: 0.02em;
 }
 
 .toggle-btn:hover {
+  color: var(--amber-light);
   text-decoration: underline;
 }
 
+/* --- BOTÓN PUBLICAR RESEÑA --- */
+button:not(.toggle-btn) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--forest);
+  color: var(--white);
+  border: 2px solid var(--forest);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all var(--transition);
+  margin-top: 32px;
+}
+
+button:not(.toggle-btn):hover {
+  background: transparent;
+  color: var(--forest);
+}
+
+/* --- YA RESEÑADO --- */
+.ya-reseñado {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--cream-dark);
+  border-radius: 99px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  margin-top: 32px;
+}
+
+/* --- BOTÓN VOLVER --- */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 32px;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--ink-muted);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: all var(--transition);
+}
+
+.back-btn:hover {
+  background: var(--cream-dark);
+  color: var(--ink);
+  border-color: var(--parchment);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 680px) {
+  .details-container {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .cover-container {
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+    position: static;
+  }
+}

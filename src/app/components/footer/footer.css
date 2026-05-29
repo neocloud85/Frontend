@@ -1,15 +1,17 @@
 /* =====================================================
-   FOOTER — Editorial literaria
+   FOOTER — siempre al fondo (sticky bottom via flexbox)
    ===================================================== */
 
 .footer {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 32px 24px;
+  padding: 24px 32px;
   background: var(--ink);
   color: var(--parchment);
-  margin-top: 0;
+  /* flex-shrink: 0 evita que el footer se comprima
+     cuando el contenido es corto */
+  flex-shrink: 0;
 }
 
 /* Línea decorativa superior */
@@ -35,7 +37,7 @@
 
 .footer .autor {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.4);
   letter-spacing: 0.02em;
 }
 

@@ -2,32 +2,32 @@
 
   <!-- Enlaces públicos -->
   @if (!isLoggedIn) {
-    <a routerLink="/">{{ 'menu.inicio' | translate }}</a>
-    <a routerLink="/login">{{ 'menu.login' | translate }}</a>
-    <a routerLink="/register">{{ 'menu.register' | translate }}</a>
+    <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">{{ 'menu.inicio' | translate }}</a>
+    <a routerLink="/login" routerLinkActive="active-link">{{ 'menu.login' | translate }}</a>
+    <a routerLink="/register" routerLinkActive="active-link">{{ 'menu.register' | translate }}</a>
   }
 
   <!-- Enlaces para usuarios logueados -->
   @if (isLoggedIn) {
 
-    <a routerLink="/dashboard">{{ 'menu.inicio' | translate }}</a>
-    <a routerLink="/mis-resenas">{{ 'menu.misResenas' | translate }}</a>
-    <a routerLink="/recomendados">{{ 'menu.recomendados' | translate }}</a>
-    <a routerLink="/resenas-usuarios">{{ 'menu.resenasUsuarios' | translate }}</a>
-    <a routerLink="/buscar-usuarios">{{ 'menu.buscarUsuarios' | translate }}</a>
+    <a routerLink="/dashboard" routerLinkActive="active-link">{{ 'menu.inicio' | translate }}</a>
+    <a routerLink="/mis-resenas" routerLinkActive="active-link">{{ 'menu.misResenas' | translate }}</a>
+    <a routerLink="/recomendados" routerLinkActive="active-link">{{ 'menu.recomendados' | translate }}</a>
+    <a routerLink="/resenas-usuarios" routerLinkActive="active-link">{{ 'menu.resenasUsuarios' | translate }}</a>
+    <a routerLink="/buscar-usuarios" routerLinkActive="active-link">{{ 'menu.buscarUsuarios' | translate }}</a>
 
-    <a routerLink="/solicitudes" class="solicitudes-link">
+    <a routerLink="/solicitudes" routerLinkActive="active-link" class="solicitudes-link">
       {{ 'menu.solicitudes' | translate }}
       @if (solicitudesCount() > 0) {
         <span class="badge">{{ solicitudesCount() }}</span>
       }
     </a>
 
-    <a routerLink="/amistades">{{ 'menu.amistades' | translate }}</a>
-    <a routerLink="/dm">{{ 'menu.mensajes' | translate }}</a>
+    <a routerLink="/amistades" routerLinkActive="active-link">{{ 'menu.amistades' | translate }}</a>
+    <a routerLink="/dm" routerLinkActive="active-link">{{ 'menu.mensajes' | translate }}</a>
   }
 
-  <!-- DROPDOWN ADMIN (por click) -->
+  <!-- DROPDOWN ADMIN -->
   @if (isAdmin) {
     <div class="dropdown" [class.open]="adminOpen">
       <button
@@ -39,9 +39,9 @@
 
       @if (adminOpen) {
         <div class="dropdown-content">
-          <a routerLink="/admin/usuarios">{{ 'menu.adminUsuarios' | translate }}</a>
-          <a routerLink="/admin/resenas">{{ 'menu.adminResenas' | translate }}</a>
-          <a routerLink="/admin/mensajes">{{ 'menu.adminMensajes' | translate }}</a>
+          <a routerLink="/admin/usuarios" routerLinkActive="active-link">{{ 'menu.adminUsuarios' | translate }}</a>
+          <a routerLink="/admin/resenas" routerLinkActive="active-link">{{ 'menu.adminResenas' | translate }}</a>
+          <a routerLink="/admin/mensajes" routerLinkActive="active-link">{{ 'menu.adminMensajes' | translate }}</a>
         </div>
       }
     </div>
@@ -51,18 +51,18 @@
   <div class="idioma-selector">
     <span class="idioma-icon">🌐</span>
 
-    <button 
+    <button
       type="button"
       class="idioma-btn"
-      [class.active]="translate.lang() === 'es'" 
+      [class.active]="translate.lang() === 'es'"
       (click)="changeLang('es')">
       ES
     </button>
 
-    <button 
+    <button
       type="button"
       class="idioma-btn"
-      [class.active]="translate.lang() === 'en'" 
+      [class.active]="translate.lang() === 'en'"
       (click)="changeLang('en')">
       EN
     </button>
@@ -70,10 +70,9 @@
 
   <!-- Logout -->
   @if (isLoggedIn) {
-   <button type="button" class="logout-btn" (click)="logout()">
-  {{ 'menu.logout' | translate }}
-</button>
-
+    <button type="button" class="logout-btn" (click)="logout()">
+      {{ 'menu.logout' | translate }}
+    </button>
   }
 
 </nav>
