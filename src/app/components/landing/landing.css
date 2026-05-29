@@ -1,82 +1,167 @@
+/* =====================================================
+   LANDING PAGE — Editorial literaria
+   ===================================================== */
+
+.app-landing {
+  position: relative;
+  z-index: 1;
+}
+
 /* ============================
-   HERO SECTION
+   HERO
 ============================ */
 .hero {
+  position: relative;
   text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #4a90e2, #6a5acd);
-  color: white;
-  border-radius: 0 0 20px 20px;
+  padding: 100px 24px 80px;
+  background:
+    linear-gradient(160deg, var(--forest) 0%, #1a2f26 40%, var(--ink) 100%);
+  color: var(--white);
+  overflow: hidden;
+}
+
+/* Ornamento decorativo de fondo */
+.hero::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 28rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Borde inferior decorativo */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
 }
 
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  font-weight: 700;
+  position: relative;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 18px;
+  letter-spacing: -0.02em;
 }
 
 .hero p {
-  font-size: 1.3rem;
-  opacity: 0.9;
+  position: relative;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255,255,255,0.72);
+  max-width: 540px;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 1.7;
 }
 
 /* ============================
-   POPULAR BOOKS SECTION
+   SECCIÓN DE POPULARES
 ============================ */
 .popular-section {
-  padding: 40px 20px;
-  max-width: 1100px;
+  padding: 60px 24px 80px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
 .popular-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 25px;
-  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ink);
+  position: relative;
+}
+
+/* Línea decorativa bajo el título */
+.popular-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--amber);
+  margin: 14px auto 40px;
+  border-radius: 2px;
 }
 
 /* ============================
-   BOOK GRID
+   GRID DE LIBROS
 ============================ */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 28px;
 }
 
 .book-card {
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px;
   cursor: pointer;
   text-align: center;
-  transition: transform .2s, box-shadow .2s;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.book-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--amber-pale), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
 }
 
 .book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.book-card:hover::before {
+  opacity: 1;
 }
 
 .book-card img {
   width: 100%;
-  height: 220px;
+  height: 230px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .book-card h3 {
-  font-size: 1rem;
-  margin: 8px 0;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
   font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--ink);
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
 }
 
 .book-card p {
-  font-size: 0.9rem;
-  color: #444;
+  font-size: 0.85rem;
+  color: var(--amber);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================
@@ -84,35 +169,40 @@
 ============================ */
 .explore-btn {
   text-align: center;
-  margin: 40px 0;
+  margin: 48px 0 24px;
 }
 
 .explore-btn button {
-  background: #4a90e2;
-  color: white;
-  padding: 14px 28px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 8px;
+  background: var(--forest);
+  color: var(--white);
+  padding: 14px 36px;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: 2px solid var(--forest);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: background .2s, transform .2s;
+  transition: all var(--transition);
+  font-family: var(--font-body);
 }
 
 .explore-btn button:hover {
-  background: #3a78c2;
-  transform: scale(1.05);
+  background: transparent;
+  color: var(--forest);
 }
 
 /* ============================
    RESPONSIVE
 ============================ */
 @media (max-width: 600px) {
-  .hero h1 {
-    font-size: 2.2rem;
+  .hero {
+    padding: 72px 20px 60px;
   }
 
-  .hero p {
-    font-size: 1.1rem;
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .book-card img {

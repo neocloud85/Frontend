@@ -1,158 +1,211 @@
-/* ====== CONTENEDOR DEL MENÚ ====== */
+/* =====================================================
+   MENU / NAVBAR — Editorial literaria
+   ===================================================== */
+
 .menu {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 15px;
-  padding: 12px 20px;
-  background: #1e3a8a;
-  color: white;
-  border-bottom: 3px solid #0f1e4d;
+  gap: 4px;
+  padding: 0 32px;
+  height: 64px;
+  background: var(--ink);
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 20px rgba(28,23,18,0.3);
 }
 
-/* ====== ENLACES ====== */
+/* Logo / marca implícita a la izquierda */
+.menu::before {
+  content: '📚';
+  font-size: 20px;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+/* --- ENLACES --- */
 .menu a {
-  color: white;
+  color: var(--parchment);
   text-decoration: none;
-  font-weight: 600;
-  padding: 8px 12px;
-  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
-  transition: background 0.25s, transform 0.15s;
+  transition: color var(--transition), background var(--transition);
 }
 
 .menu a:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
 }
 
-/* ====== BADGE ====== */
+.menu a.active {
+  color: var(--amber-light);
+}
+
+/* --- BADGE --- */
 .badge {
-  background: #ef4444;
-  color: white;
-  padding: 2px 7px;
-  border-radius: 50%;
-  font-size: 12px;
-  margin-left: 6px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  background: var(--amber);
+  color: var(--white);
+  padding: 0 5px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
-/* ====== DROPDOWN ADMIN ====== */
+/* --- DROPDOWN ADMIN --- */
 .dropdown {
   position: relative;
 }
 
 .dropdown-btn {
   background: transparent;
-  border: none;
-  color: white;
-  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--parchment);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
-  transition: background 0.25s, transform 0.15s;
+  transition: color var(--transition), background var(--transition), border-color var(--transition);
+  font-family: var(--font-body);
 }
 
 .dropdown-btn:hover,
 .dropdown.open .dropdown-btn {
-  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.35);
 }
 
 .dropdown-content {
   position: absolute;
-  top: 40px;
+  top: calc(100% + 8px);
   left: 0;
-  background: #111827; /* gris muy oscuro, no blanco */
-  border-radius: 6px;
-  min-width: 200px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  background: var(--ink-soft);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  min-width: 210px;
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
-  z-index: 2000;
+  animation: dropDown 0.18s ease;
+}
+
+@keyframes dropDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .dropdown-content a {
   display: block;
-  padding: 10px 15px;
-  color: #e5e7eb;
-  text-decoration: none;
-  font-weight: 500;
-  white-space: nowrap;
+  padding: 11px 18px;
+  color: var(--cream-dark);
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  transition: background var(--transition), color var(--transition);
 }
 
 .dropdown-content a:hover {
-  background: #1f2937;
+  background: rgba(255,255,255,0.08);
+  color: var(--white);
 }
 
-/* ====== SELECTOR DE IDIOMA ====== */
+/* --- SELECTOR DE IDIOMA --- */
 .idioma-selector {
   display: flex;
   align-items: center;
   gap: 6px;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .idioma-icon {
-  font-size: 16px;
+  font-size: 15px;
+  opacity: 0.7;
 }
 
 .idioma-btn {
   background: transparent;
-  color: #e5e7eb;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 4px 10px;
-  border-radius: 6px;
+  color: var(--parchment);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-weight: 600;
-  font-size: 13px;
-  transition: background 0.25s, transform 0.15s, border-color 0.2s;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  transition: all var(--transition);
+  font-family: var(--font-body);
 }
 
 .idioma-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-1px);
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.4);
+  color: var(--white);
 }
 
 .idioma-btn.active {
-  background: #2563eb;
-  border-color: #1d4ed8;
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--white);
 }
 
-/* ====== BOTÓN LOGOUT ====== */
+/* --- BOTÓN LOGOUT --- */
 .logout-btn {
-  background: #dc2626;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  background: transparent;
+  color: var(--parchment);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  font-weight: 600;
-  transition: background 0.25s, transform 0.15s;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+  flex-shrink: 0;
 }
 
 .logout-btn:hover {
-  background: #b91c1c;
-  transform: translateY(-2px);
+  background: rgba(196, 120, 58, 0.25);
+  border-color: var(--amber);
+  color: var(--amber-light);
 }
 
-/* ====== RESPONSIVE ====== */
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .menu {
-    justify-content: center;
-    gap: 10px;
+    padding: 0 16px;
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 6px;
+  }
+
+  .menu::before {
+    display: none;
   }
 
   .menu a,
   .dropdown-btn,
   .logout-btn {
-    padding: 6px 10px;
-    font-size: 14px;
-  }
-
-  .dropdown-content {
-    top: 36px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
   }
 }
