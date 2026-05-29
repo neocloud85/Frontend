@@ -15,8 +15,7 @@
         <img class="cover"
             [src]="book().volumeInfo.imageLinks?.thumbnail"
             alt="Portada">
-        </div>
-
+      </div>
 
       <div class="info">
         <h1>{{ book().volumeInfo.title }}</h1>
@@ -26,25 +25,29 @@
         <p><strong>Editorial:</strong> {{ book().volumeInfo.publisher }}</p>
 
         <div class="description" style="white-space: pre-line;">
-        {{ getShortDescription(book().volumeInfo.description) }}
+          {{ getShortDescription(book().volumeInfo.description) }}
         </div>
 
+        <!-- Leer más / menos va solo, bajo la descripción -->
         <button class="toggle-btn" (click)="toggleDescription()">
-        {{ expanded() ? 'Leer menos' : 'Leer más' }}
+          {{ expanded() ? 'Leer menos' : 'Leer más' }}
         </button>
 
+        <!-- Acciones principales: separadas y en su propia fila -->
+        <div class="actions">
           @if (!hasReview()) {
-      <button (click)="openReview()">Publicar reseña</button>
-    } @else {
-      <p class="ya-reseñado">Ya has reseñado este libro</p>
-    }
+            <button class="btn-primary" (click)="openReview()">Publicar reseña</button>
+          } @else {
+            <p class="ya-reseñado">Ya has reseñado este libro</p>
+          }
 
+          <a routerLink="/dashboard" class="back-btn">Volver al catálogo</a>
+        </div>
 
-      @if (showReview()) {
-      <app-review [book]="book()"></app-review>
-      }
+        @if (showReview()) {
+          <app-review [book]="book()"></app-review>
+        }
 
-        <a routerLink="/dashboard" class="back-btn">Volver al catálogo</a>
       </div>
 
     </div>
