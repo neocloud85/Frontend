@@ -1,55 +1,214 @@
+/* =====================================================
+   RECOMENDACIONES — Editorial literaria
+   ===================================================== */
+
 .recomendados-container {
-  padding: 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  position: relative;
+  z-index: 1;
 }
 
 h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-style: italic;
+  color: var(--ink);
   margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--cream-dark);
 }
 
-.loading,
-.error,
-.empty {
-  font-size: 1.2rem;
-  margin-top: 20px;
+/* --- BANNER DE MOTIVO -------------------------------- */
+.motivo-banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding: 12px 18px;
+  background: var(--amber-pale);
+  border: 1px solid rgba(196,120,58,0.2);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
 }
 
+.motivo-global {
+  background: var(--cream-dark);
+  border-color: var(--border);
+}
+
+.motivo-icon {
+  color: var(--amber);
+  font-size: 1rem;
+}
+
+.cat-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--white);
+  border: 1px solid var(--amber);
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+/* --- SKELETON LOADER --------------------------------- */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 24px;
+}
+
+.skeleton-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 12px;
+}
+
+.skeleton-img {
+  width: 100%;
+  height: 230px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--cream-dark) 25%, var(--cream) 50%, var(--cream-dark) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-top: 12px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--cream-dark) 25%, var(--cream) 50%, var(--cream-dark) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeleton-line.short { width: 60%; }
+
+@keyframes shimmer {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- GRID DE LIBROS ---------------------------------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 24px;
 }
 
 .card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform .2s;
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Libros de Google con borde ámbar sutil */
+.card.from-google {
+  border-color: rgba(196,120,58,0.3);
+}
+
+/* Badge "Descubrimiento" en libros de Google */
+.google-badge {
+  position: absolute;
+  top: 8px;
+  right: -1px;
+  background: var(--amber);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 10px 3px 8px;
+  border-radius: 4px 0 0 4px;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 12px;
 }
 
 .card img {
   width: 100%;
-  height: 240px;
+  height: 230px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.no-cover {
+  width: 100%;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream-dark);
+  border-radius: var(--radius-sm);
+  font-size: 3rem;
+}
+
+.card-body {
+  padding-top: 10px;
+}
+
+.card-body h3 {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 4px;
 }
 
 .autor {
-  color: #666;
-  margin: 8px 0;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 4px;
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: #0078ff;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
+.nota {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+/* --- ESTADOS ----------------------------------------- */
+.empty, .error {
+  text-align: center;
+  padding: 60px 24px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink-muted);
+}
+
+.error { color: #B91C1C; }
+
+/* --- RESPONSIVE -------------------------------------- */
+@media (max-width: 600px) {
+  .grid, .skeleton-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .card img, .no-cover, .skeleton-img { height: 180px; }
 }

@@ -2,8 +2,34 @@
 
   <h1>{{ 'recomendaciones.title' | translate }}</h1>
 
+  <!-- Explicación de por qué se recomiendan estos libros -->
+  @if (!loading() && categorias().length > 0) {
+    <div class="motivo-banner">
+      <span class="motivo-icon">✦</span>
+      <span>Basado en tus gustos en:</span>
+      @for (cat of categorias(); track cat) {
+        <span class="cat-chip">{{ cat }}</span>
+      }
+    </div>
+  }
+
+  @if (!loading() && motivo() === 'top_global') {
+    <div class="motivo-banner motivo-global">
+      <span class="motivo-icon">⭐</span>
+      <span>Los libros mejor valorados por la comunidad</span>
+    </div>
+  }
+
   @if (loading()) {
-    <p class="loading">{{ 'recomendaciones.loading' | translate }}</p>
+    <div class="skeleton-grid">
+      @for (i of [1,2,3,4,5,6]; track i) {
+        <div class="skeleton-card">
+          <div class="skeleton-img"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line short"></div>
+        </div>
+      }
+    </div>
   }
 
   @if (error()) {
@@ -11,23 +37,33 @@
   }
 
   @if (!loading() && recomendaciones().length === 0 && !error()) {
-    <p class="empty">
-      {{ 'recomendaciones.empty' | translate }}
-    </p>
+    <p class="empty">{{ 'recomendaciones.empty' | translate }}</p>
   }
 
-  @if (recomendaciones().length > 0) {
+  @if (!loading() && recomendaciones().length > 0) {
     <div class="grid">
       @for (libro of recomendaciones(); track libro.id) {
-        <div class="card">
-          <img [src]="libro.imagen" alt="Portada del libro">
+        <div class="card" [class.from-google]="libro.fromGoogle">
 
-          <h3>{{ libro.titulo }}</h3>
-          <p class="autor">{{ libro.autor }}</p>
+          @if (libro.fromGoogle) {
+            <span class="google-badge">Descubrimiento</span>
+          }
 
-          <a [routerLink]="['/book', libro.id]" class="btn">
-            {{ 'recomendaciones.details' | translate }}
+          <a [routerLink]="['/book', libro.id]" class="card-link">
+            @if (libro.imagen) {
+              <img [src]="libro.imagen" [alt]="libro.titulo" loading="lazy">
+            } @else {
+              <div class="no-cover">📚</div>
+            }
+            <div class="card-body">
+              <h3>{{ libro.titulo }}</h3>
+              <p class="autor">{{ libro.autor }}</p>
+              @if (libro.nota_media) {
+                <p class="nota">⭐ {{ libro.nota_media | number:'1.1-1' }}</p>
+              }
+            </div>
           </a>
+
         </div>
       }
     </div>

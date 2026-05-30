@@ -12,21 +12,24 @@ import { TranslatePipe } from '../../pipes/translate-pipe';
   styleUrl: './recomendaciones.css',
 })
 export class Recomendaciones {
-  
+
   private books = inject(Books);
 
   recomendaciones = signal<any[]>([]);
-  loading = signal(true);
-  error = signal<string | null>(null);
+  categorias      = signal<string[]>([]);
+  motivo          = signal<string>('');
+  loading         = signal(true);
+  error           = signal<string | null>(null);
 
   ngOnInit() {
     this.books.getRecomendaciones().subscribe({
-      next: (res) => {
-        this.recomendaciones.set(res);
+      next: (res: any) => {
+        this.recomendaciones.set(res.recomendados  ?? res);
+        this.categorias.set(res.categorias         ?? []);
+        this.motivo.set(res.motivo                 ?? '');
         this.loading.set(false);
       },
-      error: (err) => {
-        console.error('Error cargando recomendaciones:', err);
+      error: () => {
         this.error.set('No se pudieron cargar las recomendaciones');
         this.loading.set(false);
       }
