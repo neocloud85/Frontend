@@ -15,8 +15,8 @@ export class AmistadService {
   solicitudesCount = signal(0);
 
   // Buscar usuarios por nombre
-  buscarUsuarios(q: string) {
-    return this.http.get<any[]>(`${this.api}/amistad/buscar?q=${q}`);
+  buscarUsuarios(q: string, page = 1, limit = 10) {
+    return this.http.get<any>(`${this.api}/amistad/buscar?q=${q}&page=${page}&limit=${limit}`);
   }
 
   // Enviar solicitud
