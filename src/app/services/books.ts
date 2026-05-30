@@ -140,8 +140,8 @@ export class Books {
     return this.http.post(`${this.backendUrl}/resenas`, data);
   }
 
-  getMyReviews() {
-    return this.http.get<any[]>(`${this.backendUrl}/resenas/mias`);
+  getMyReviews(page = 1, limit = 8) {
+    return this.http.get<any>(`${this.backendUrl}/resenas/mias?page=${page}&limit=${limit}`);
   }
 
   hasReview(libro_id: string) {
@@ -158,8 +158,8 @@ export class Books {
     return this.http.get<any[]>(`${this.backendUrl}/resenas/otros`);
   }
 
-  getResenasSeguidos() {
-    return this.http.get<any[]>(`${this.backendUrl}/resenas/seguidos`);
+  getResenasSeguidos(page = 1, limit = 8) {
+    return this.http.get<any>(`${this.backendUrl}/resenas/seguidos?page=${page}&limit=${limit}`);
   }
 
   getTopLibros() {
