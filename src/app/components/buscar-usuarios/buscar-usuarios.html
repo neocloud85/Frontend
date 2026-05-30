@@ -1,47 +1,77 @@
-<h2>{{ 'buscarUsuarios.title' | translate }}</h2>
+<div class="buscar-container">
 
-<input
-  type="text"
-  [(ngModel)]="query"
-  (input)="onInput()"
-  [placeholder]="'buscarUsuarios.placeholder' | translate"
-  class="input"
-/>
+  <h2>{{ 'buscarUsuarios.title' | translate }}</h2>
 
-@if (loading) {
-  <p>{{ 'buscarUsuarios.loading' | translate }}</p>
-}
-
-@if (!loading && resultados.length === 0 && query.length >= 2) {
-  <p>{{ 'buscarUsuarios.noResults' | translate }}</p>
-}
-
-@if (resultados.length > 0) {
-  <div class="resultados">
-    @for (u of resultados; track u.id) {
-      <div class="usuario-card">
-        <div class="info">
-          <strong>{{ u.nombre }}</strong>
-        </div>
-
-        <!-- 🔥 BOTÓN DINÁMICO -->
-        @if (u.siguiendo) {
-          <button class="siguiendo" disabled>
-            {{ 'buscarUsuarios.following' | translate }}
-          </button>
-        }
-        @else if (u.pendiente) {
-          <button class="pendiente" disabled>
-            {{ 'buscarUsuarios.pending' | translate }}
-          </button>
-        }
-        @else {
-          <button class="enviar" (click)="enviarSolicitud(u.id)">
-            {{ 'buscarUsuarios.sendRequest' | translate }}
-          </button>
-        }
-
-      </div>
-    }
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="query"
+      (input)="onInput()"
+      [placeholder]="'buscarUsuarios.placeholder' | translate"
+      class="input"
+    />
   </div>
-}
+
+  @if (loading) {
+    <p class="loading">{{ 'buscarUsuarios.loading' | translate }}</p>
+  }
+
+  @if (!loading && resultados.length === 0 && query.length >= 2) {
+    <p class="empty">{{ 'buscarUsuarios.noResults' | translate }}</p>
+  }
+
+  @if (!loading && resultados.length > 0) {
+
+    <div class="resultados">
+      @for (u of resultados; track u.id) {
+        <div class="usuario-card">
+          <div class="info">
+            <strong>{{ u.nombre }}</strong>
+            <span class="correo">{{ u.correo }}</span>
+          </div>
+
+          @if (u.siguiendo) {
+            <button class="btn-estado siguiendo" disabled>
+              {{ 'buscarUsuarios.following' | translate }}
+            </button>
+          } @else if (u.pendiente) {
+            <button class="btn-estado pendiente" disabled>
+              {{ 'buscarUsuarios.pending' | translate }}
+            </button>
+          } @else {
+            <button class="btn-estado enviar" (click)="enviarSolicitud(u.id)">
+              {{ 'buscarUsuarios.sendRequest' | translate }}
+            </button>
+          }
+
+        </div>
+      }
+    </div>
+
+    <!-- Paginación -->
+    <div class="pagination">
+      <button class="page-btn" (click)="goTo(page() - 1)" [disabled]="page() === 1">
+        ← Anterior
+      </button>
+
+      @for (p of pages(); track p) {
+        <button
+          class="page-btn"
+          [class.active]="p === page()"
+          (click)="goTo(p)">
+          {{ p }}
+        </button>
+      }
+
+      <button class="page-btn" (click)="goTo(page() + 1)" [disabled]="page() === totalPages()">
+        Siguiente →
+      </button>
+    </div>
+
+    <p class="page-info">
+      Página {{ page() }} de {{ totalPages() }} · {{ total() }} usuarios encontrados
+    </p>
+
+  }
+
+</div>

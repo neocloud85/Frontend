@@ -1,8 +1,8 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, signal, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AmistadService } from '../../services/amistad';
-import { Subject, debounceTime, distinctUntilChanged, switchMap, of, startWith } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, switchMap, of } from 'rxjs';
 import Swal from 'sweetalert2';
 import { TranslatePipe } from '../../pipes/translate-pipe';
 
@@ -26,84 +26,99 @@ const Toast = Swal.mixin({
 export class BuscarUsuariosComponent {
 
   private amistad = inject(AmistadService);
-  private cdr = inject(ChangeDetectorRef);
+  private cdr     = inject(ChangeDetectorRef);
 
-  query = '';
+  query      = '';
   resultados: any[] = [];
-  todosUsuarios: any[] = [];
-  loading = false;
+  loading    = false;
+
+  page       = signal(1);
+  totalPages = signal(1);
+  total      = signal(0);
+  readonly limit = 10;
 
   private search$ = new Subject<string>();
 
   constructor() {
     this.search$
       .pipe(
-        startWith(''), // 🔥 EMITE UN VALOR INICIAL
-        debounceTime(250),
+        debounceTime(300),
         distinctUntilChanged(),
         switchMap(texto => {
           texto = texto.trim();
-
-          if (texto.length === 0) {
-            this.resultados = [...this.todosUsuarios];
-            return of(null);
-          }
-
           if (texto.length < 2) {
             this.resultados = [];
+            this.total.set(0);
+            this.totalPages.set(1);
+            this.loading = false;
+            this.cdr.detectChanges();
             return of(null);
           }
-
           this.loading = true;
-          return this.amistad.buscarUsuarios(texto);
+          // Al escribir nuevo texto siempre volvemos a página 1
+          this.page.set(1);
+          return this.amistad.buscarUsuarios(texto, 1, this.limit);
         })
       )
       .subscribe((data: any) => {
-        if (data && this.query.trim().length >= 2) {
-          this.resultados = data;
+        if (data) {
+          this.resultados  = data.usuarios;
+          this.total.set(data.total);
+          this.totalPages.set(data.totalPages);
         }
         this.loading = false;
-        this.cdr.detectChanges(); // 🔥 fuerza refresco
+        this.cdr.detectChanges();
       });
   }
 
   ngOnInit() {
-    this.cargarTodosUsuarios();
-  }
-
-  cargarTodosUsuarios() {
-    this.amistad.getAllUsers().subscribe({
-      next: (users) => {
-        this.todosUsuarios = users;
-        this.resultados = [...users];
-
-        this.cdr.detectChanges(); // 🔥 refresca la vista
-        this.search$.next('');    // 🔥 dispara búsqueda inicial
-      }
-    });
+    // Carga inicial: todos los usuarios, página 1
+    this.buscarPagina(1);
   }
 
   onInput() {
     this.search$.next(this.query);
   }
 
+  /** Cambia de página manteniendo el texto actual */
+  goTo(p: number) {
+    if (p < 1 || p > this.totalPages()) return;
+    this.page.set(p);
+    this.buscarPagina(p);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  buscarPagina(p: number) {
+    this.loading = true;
+    this.amistad.buscarUsuarios(this.query.trim(), p, this.limit).subscribe({
+      next: (data: any) => {
+        this.resultados  = data.usuarios;
+        this.total.set(data.total);
+        this.totalPages.set(data.totalPages);
+        this.loading = false;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.loading = false;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  pages(): number[] {
+    return Array.from({ length: this.totalPages() }, (_, i) => i + 1);
+  }
+
   enviarSolicitud(id: string) {
     this.amistad.enviarSolicitud(id).subscribe({
       next: () => {
-        Toast.fire({
-          icon: 'success',
-          title: 'buscarUsuarios.toastSuccess'
-        });
-
+        Toast.fire({ icon: 'success', title: 'buscarUsuarios.toastSuccess' });
         this.resultados = this.resultados.map(u =>
           u.id === id ? { ...u, pendiente: 1 } : u
         );
       },
       error: () => {
-        Toast.fire({
-          icon: 'error',
-          title: 'buscarUsuarios.toastError'
-        });
+        Toast.fire({ icon: 'error', title: 'buscarUsuarios.toastError' });
       }
     });
   }

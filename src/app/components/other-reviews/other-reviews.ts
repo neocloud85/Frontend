@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, inject } from '@angular/core';
+import { Component, ChangeDetectorRef, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Books } from '../../services/books';
 import { RouterLink } from '@angular/router';
@@ -16,17 +16,25 @@ export class ResenasSeguidosComponent {
   loading = true;
   reviews: any[] = [];
 
+  page       = signal(1);
+  totalPages = signal(1);
+  total      = signal(0);
+  readonly limit = 8;
+
   private books = inject(Books);
-  private cdr = inject(ChangeDetectorRef);
+  private cdr   = inject(ChangeDetectorRef);
 
   ngOnInit() {
     this.cargarResenas();
   }
 
   cargarResenas() {
-    this.books.getResenasSeguidos().subscribe({
-      next: (data) => {
-        this.reviews = [...data];
+    this.loading = true;
+    this.books.getResenasSeguidos(this.page(), this.limit).subscribe({
+      next: (data: any) => {
+        this.reviews = data.resenas;
+        this.total.set(data.total);
+        this.totalPages.set(data.totalPages);
         this.loading = false;
         this.cdr.detectChanges();
       },
@@ -35,5 +43,16 @@ export class ResenasSeguidosComponent {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  goTo(p: number) {
+    if (p < 1 || p > this.totalPages()) return;
+    this.page.set(p);
+    this.cargarResenas();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  pages(): number[] {
+    return Array.from({ length: this.totalPages() }, (_, i) => i + 1);
   }
 }

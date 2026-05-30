@@ -1,31 +1,56 @@
-<h2>{{ 'seguidos.title' | translate }}</h2>
+<div class="reviews-container">
 
-@if (loading) {
-  <p>{{ 'seguidos.loading' | translate }}</p>
-}
+  <h2>{{ 'seguidos.title' | translate }}</h2>
 
-@if (!loading && reviews.length === 0) {
-  <p>{{ 'seguidos.empty' | translate }}</p>
-}
+  @if (loading) {
+    <p class="loading">{{ 'seguidos.loading' | translate }}</p>
+  }
 
-@if (reviews.length > 0) {
-  <div class="lista">
-    @for (r of reviews; track r.id) {
-      <div class="review-card" [routerLink]="['/book', r.libro_id]">
+  @if (!loading && reviews.length === 0) {
+    <p class="empty">{{ 'seguidos.empty' | translate }}</p>
+  }
 
-        <h3>{{ r.titulo }}</h3>
-        <p><strong>{{ r.usuario }}</strong></p>
-        <p>⭐ {{ r.puntuacion }}</p>
+  @if (!loading && reviews.length > 0) {
 
-        @if (r.texto) {
-          <p>{{ r.texto }}</p>
-        }
+    <div class="reviews-grid">
+      @for (r of reviews; track r.id) {
+        <div class="review-card" [routerLink]="['/book', r.libro_id]">
+          <h3>{{ r.titulo }}</h3>
+          <p class="usuario"><strong>{{ r.usuario }}</strong></p>
+          <p class="rating">⭐ {{ r.puntuacion }} / 5</p>
+          @if (r.texto) {
+            <p class="text">{{ r.texto }}</p>
+          } @else {
+            <p class="no-text">{{ 'seguidos.noComment' | translate }}</p>
+          }
+        </div>
+      }
+    </div>
 
-        @if (!r.texto) {
-          <p class="no-text">{{ 'seguidos.noComment' | translate }}</p>
-        }
+    <!-- Paginación -->
+    <div class="pagination">
+      <button class="page-btn" (click)="goTo(page() - 1)" [disabled]="page() === 1">
+        ← Anterior
+      </button>
 
-      </div>
-    }
-  </div>
-}
+      @for (p of pages(); track p) {
+        <button
+          class="page-btn"
+          [class.active]="p === page()"
+          (click)="goTo(p)">
+          {{ p }}
+        </button>
+      }
+
+      <button class="page-btn" (click)="goTo(page() + 1)" [disabled]="page() === totalPages()">
+        Siguiente →
+      </button>
+    </div>
+
+    <p class="page-info">
+      Página {{ page() }} de {{ totalPages() }} · {{ total() }} reseñas en total
+    </p>
+
+  }
+
+</div>

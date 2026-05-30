@@ -1,28 +1,56 @@
-<h1>{{ 'myReviews.title' | translate }}</h1>
+<div class="reviews-container">
 
-@if (loading()) {
-  <p class="loading">{{ 'myReviews.loading' | translate }}</p>
-}
+  <h1>{{ 'myReviews.title' | translate }}</h1>
 
-@for (r of reviews(); track r.id) {
-  <div class="review-card">
-    <h3>{{ r.titulo }}</h3>
-    <p class="author">{{ r.autor }}</p>
+  @if (loading()) {
+    <p class="loading">{{ 'myReviews.loading' | translate }}</p>
+  }
 
-    <p class="rating">
-      ⭐ {{ r.puntuacion }} / 5
+  @if (!loading() && reviews().length === 0) {
+    <p class="empty">{{ 'myReviews.empty' | translate }}</p>
+  }
+
+  @if (!loading() && reviews().length > 0) {
+
+    <div class="reviews-grid">
+      @for (r of reviews(); track r.id) {
+        <div class="review-card">
+          <h3>{{ r.titulo }}</h3>
+          <p class="author">{{ r.autor }}</p>
+          <p class="rating">⭐ {{ r.puntuacion }} / 5</p>
+          @if (r.texto) {
+            <p class="text">{{ r.texto }}</p>
+          } @else {
+            <p class="no-text">{{ 'myReviews.noComment' | translate }}</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Paginación -->
+    <div class="pagination">
+      <button class="page-btn" (click)="goTo(page() - 1)" [disabled]="page() === 1">
+        ← Anterior
+      </button>
+
+      @for (p of pages(); track p) {
+        <button
+          class="page-btn"
+          [class.active]="p === page()"
+          (click)="goTo(p)">
+          {{ p }}
+        </button>
+      }
+
+      <button class="page-btn" (click)="goTo(page() + 1)" [disabled]="page() === totalPages()">
+        Siguiente →
+      </button>
+    </div>
+
+    <p class="page-info">
+      Página {{ page() }} de {{ totalPages() }} · {{ total() }} reseñas en total
     </p>
 
-    @if (r.texto) {
-      <p class="text">{{ r.texto }}</p>
-    }
+  }
 
-    @if (!r.texto) {
-      <p class="no-text">{{ 'myReviews.noComment' | translate }}</p>
-    }
-  </div>
-}
-
-@if (!loading() && reviews().length === 0) {
-  <p class="empty">{{ 'myReviews.empty' | translate }}</p>
-}
+</div>
