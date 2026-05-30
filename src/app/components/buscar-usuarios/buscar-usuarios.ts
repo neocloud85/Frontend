@@ -2,7 +2,7 @@ import { Component, inject, signal, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AmistadService } from '../../services/amistad';
-import { Subject, debounceTime, distinctUntilChanged, switchMap, of } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import Swal from 'sweetalert2';
 import { TranslatePipe } from '../../pipes/translate-pipe';
 
@@ -46,33 +46,21 @@ export class BuscarUsuariosComponent {
         distinctUntilChanged(),
         switchMap(texto => {
           texto = texto.trim();
-          if (texto.length < 2) {
-            this.resultados = [];
-            this.total.set(0);
-            this.totalPages.set(1);
-            this.loading = false;
-            this.cdr.detectChanges();
-            return of(null);
-          }
           this.loading = true;
-          // Al escribir nuevo texto siempre volvemos a página 1
           this.page.set(1);
           return this.amistad.buscarUsuarios(texto, 1, this.limit);
         })
       )
       .subscribe((data: any) => {
-        if (data) {
-          this.resultados  = data.usuarios;
-          this.total.set(data.total);
-          this.totalPages.set(data.totalPages);
-        }
+        this.resultados = data.usuarios;
+        this.total.set(data.total);
+        this.totalPages.set(data.totalPages);
         this.loading = false;
         this.cdr.detectChanges();
       });
   }
 
   ngOnInit() {
-    // Carga inicial: todos los usuarios, página 1
     this.buscarPagina(1);
   }
 
@@ -80,7 +68,6 @@ export class BuscarUsuariosComponent {
     this.search$.next(this.query);
   }
 
-  /** Cambia de página manteniendo el texto actual */
   goTo(p: number) {
     if (p < 1 || p > this.totalPages()) return;
     this.page.set(p);
@@ -90,9 +77,10 @@ export class BuscarUsuariosComponent {
 
   buscarPagina(p: number) {
     this.loading = true;
+    // buscarUsuarios con q='' devuelve todos los usuarios paginados
     this.amistad.buscarUsuarios(this.query.trim(), p, this.limit).subscribe({
       next: (data: any) => {
-        this.resultados  = data.usuarios;
+        this.resultados = data.usuarios;
         this.total.set(data.total);
         this.totalPages.set(data.totalPages);
         this.loading = false;
